@@ -11,14 +11,14 @@ export class Routes {
     }
 
     private home(): void {
-        this.app.get('/', (request, response) => {
-            response.sendFile(path.join(__dirname + './view/index.html'));
-        });
-    }
+      this.app.get('/', (request, response) => {
+          response.sendFile('index.html');
+      });
+  }
 
-    private setStaticDir(): void {
-        this.app.use(express.static(path.join(__dirname, '/view')));
-    }
+  private setStaticDir(): void {
+      this.app.use(express.static(path.join(__dirname, './view')));
+  }
 
     public getRoutes(): void {
         this.home();
