@@ -1,9 +1,12 @@
 import * as express from 'express';
-import { createServer, Server } from 'http'; //new
+import { createServer, Server } from 'http';
+import * as dotenv from 'dotenv';
+dotenv.config()
+const port = Number(process.env.PORT)
 
 export class ChatServer {
 
-    public static readonly PORT:number = 5000;
+    public static readonly PORT:number = port;
     private app: express.Application;
     private port: string | number;
     private server: Server;
@@ -29,7 +32,6 @@ export class ChatServer {
       });
     }
 
-    // new
     private createServer(): void {
         this.server = createServer(this.app);
     }
