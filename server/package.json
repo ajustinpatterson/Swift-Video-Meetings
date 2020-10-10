@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node index.ts",
+    "dev": "nodemon --watch './index.ts' --exec 'ts-node' ./index.ts",
     "start": "nodemon"
   },
   "repository": {
@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Andrea-Dispe/name-to-be-changed#readme",
   "dependencies": {
+    "@types/node": "^14.11.8",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "nodemon": "^2.0.4",
