@@ -1,31 +1,40 @@
 import * as express from 'express';
-import * as dotenv from 'dotenv';
+import { createServer, Server } from 'http'; //new
 
 export class ChatServer {
-  public static readonly PORT:number = 3002;
-  private app: express.Application;
-  private port: string | number;
 
-  constructor () {
-    this.createApp();
-    this.config();
-    this.listen();
-  }
+    public static readonly PORT:number = 5000;
+    private app: express.Application;
+    private port: string | number;
+    private server: Server;
 
-  private createApp(): void {
-    this.app = express();
-  }
+    constructor() {
+        this.createApp();
+        this.config();
+        this.createServer();
+        this.listen();
+    }
 
-  private config(): void {
-    this.port = Number(process.env.PORT) || ChatServer.PORT
-  }
+    private createApp(): void {
+      this.app = express();
+    }
 
-  private listen(): void  {
-    this.app.listen(this.port)
-  }
+    private config(): void {
+      this.port = process.env.PORT || ChatServer.PORT;
+    }
 
-  public getApp(): express.Application {
-    return this.app;
-  }
+    private listen(): void {
+      this.server.listen(this.port, () => {
+          console.log('Running server on port %s', this.port);
+      });
+    }
 
+    // new
+    private createServer(): void {
+        this.server = createServer(this.app);
+    }
+
+    public getApp(): express.Application {
+        return this.app;
+    }
 }

@@ -1,8 +1,27 @@
-import { Router } from 'express';
-const router: Router = Router();
+import * as express from 'express';
+import * as path from 'path';
 
-router.get('/', (req, res) => {
-  res.send('Hello World')
-})
+export class Routes {
 
-module.exports = router;
+    private app: express.Application;
+
+    constructor(app: express.Application) {
+        this.app = app;
+        this.setStaticDir();
+    }
+
+    private home(): void {
+        this.app.get('/', (request, response) => {
+            response.sendFile('index.html');
+        });
+    }
+
+    private setStaticDir(): void {
+        this.app.use(express.static(path.join(__dirname, '../views')));
+    }
+
+    public getRoutes(): void {
+        this.home();
+    }
+
+}
