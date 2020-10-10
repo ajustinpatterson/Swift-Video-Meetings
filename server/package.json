@@ -1,0 +1,30 @@
+{
+  "name": "name-to-be-changed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node ./index.ts",
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andrea-Dispe/name-to-be-changed.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andrea-Dispe/name-to-be-changed/issues"
+  },
+  "homepage": "https://github.com/Andrea-Dispe/name-to-be-changed#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "socket.io": "^2.3.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.3"
+  }
+}
