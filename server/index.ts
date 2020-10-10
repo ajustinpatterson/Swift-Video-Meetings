@@ -1,20 +1,20 @@
 import * as express from 'express';
-import * as dotenv from 'dotenv';
+import { ChatServer } from './chat-server';
+import { Routes } from './router';
+// import * as dotenv from 'dotenv';
 
-import * as router from './router';
+let app = new ChatServer().getApp();
+const route = new Routes(app);
+route.getRoutes();
 
-dotenv.config();
+// dotenv.config()
 
-const app = express();
+// const port = process.env.PORT
 
-const port = process.env.PORT;
-
-app.use(router)
 
 app.get('/', (req, res) => {
-  res.send('Hello World')
-})
+  res.send('Hello world!');
+});
 
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`)
-})
+// app.listen(port);
+export { app };
