@@ -1,27 +1,15 @@
-import * as express from 'express';
+import {Router} from 'express';
 import * as path from 'path';
+import {v4 as uuidv4} from 'uuid';
 
-export class Routes {
+const router = Router();
 
-    private app: express.Application;
+router.get('/', (req, res)=> {
+  res.redirect(`/${uuidv4()}`);
+});
 
-    constructor(app: express.Application) {
-        this.app = app;
-        this.setStaticDir();
-    }
+router.get('/:room', (req, res) => {
+  res.render('room', {roomId: req.params.room})
+});
 
-    private home(): void {
-      this.app.get('/', (request, response) => {
-          response.sendFile('index.html');
-      });
-  }
-
-  private setStaticDir(): void {
-      this.app.use(express.static(path.join(__dirname, './view')));
-  }
-
-    public getRoutes(): void {
-        this.home();
-    }
-
-}
+module.exports = router;

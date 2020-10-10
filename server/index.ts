@@ -1,20 +1,28 @@
-import * as express from 'express';
-import { ChatServer } from './chat-server';
-import { Routes } from './router';
-// import * as dotenv from 'dotenv';
+import express from 'express';
+import dotenv from 'dotenv';
+import { Server } from 'http';
+import {v4 as uuidV4} from 'uuid';
+dotenv.config();
+import socketio from 'socket.io';
+const router = require('./router');
 
-let app = new ChatServer().getApp();
-const route = new Routes(app);
-route.getRoutes();
+const app = express();
 
-// dotenv.config()
+const http = new Server(app);
+const io = socketio(http);
 
-// const port = process.env.PORT
+const port: number = Number(process.env.PORT);
 
+app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
-  res.send('Hello world!');
+app.use(express.static('public'));
+
+app.listen(port, ()=> {
+console.log(`Server now running at port ${port}`)
+})
+
+app.get('/', (req, res)=>{
+  res.send('Hello old friends!')
 });
 
-// app.listen(port);
 export { app };
