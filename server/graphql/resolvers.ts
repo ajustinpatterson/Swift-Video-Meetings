@@ -22,8 +22,8 @@ const resolvers = {
       }
       return newUser;
     },
-    async deleteUser (_: any, { id }: any) {
-      const user = await db.User.findOne({ id });
+    async deleteUser (_: any, { email }: any) {
+      const user = await db.User.findOne({ email });
       const deletedUser = await user.destroy();
       if (deletedUser) {
         return {
@@ -32,9 +32,11 @@ const resolvers = {
         }
       }
     },
-    async updateName (_: any, { id, ...args }: any) {
+    async updateName (_: any, { id, name }: any) {
       const user = await db.User.findOne({ id })
-      //
+      //arguments passed from client
+      user.name = name;
+      await user.save();
     }
   }
 }
