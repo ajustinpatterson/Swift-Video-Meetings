@@ -5,7 +5,7 @@ import { Server } from 'http';
 
 const app = express();
 
-const router = require('./router');
+const router = require('./routes/router');
 const typeDefs = require('./graphql/typeDefs');
 const resolvers = require('./graphql/resolvers');
 
@@ -20,7 +20,9 @@ app.use(router);
 
 import dotenv from 'dotenv';
 dotenv.config();
+
 const port: number = Number(process.env.PORT);
+
 app.listen(port, ()=> {
 console.log(`Server now running at port ${port}`)
 })
