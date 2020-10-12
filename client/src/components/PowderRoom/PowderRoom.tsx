@@ -1,5 +1,5 @@
 const PowderRoom = () => {
-  return <div></div>;
+  return <div></div>
 }
 
 export default PowderRoom;
