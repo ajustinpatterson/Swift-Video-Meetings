@@ -5,8 +5,8 @@ const redirect = (req: any, res: any) => {
 }
 
 const render = (req: any, res: any) => {
-  const room = req.params.room;
-  res.render('room', {roomId: room});
+  const { room } = req.params;
+  res.render('room', {roomId: { room }});
 }
 
 module.exports = {
