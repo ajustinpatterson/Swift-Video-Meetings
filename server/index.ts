@@ -16,6 +16,10 @@ const expressServer = new Server(app);
 
 const io = socketio(expressServer);
 
+app.set('view engine', 'ejs');
+
+app.use(express.static('public'));
+
 app.use(router);
 
 import dotenv from 'dotenv';
@@ -23,7 +27,7 @@ dotenv.config();
 
 const port: number = Number(process.env.PORT);
 
-app.listen(port, ()=> {
+expressServer.listen(port, ()=> {
 console.log(`Server now running at port ${port}`)
 })
 
