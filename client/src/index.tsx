@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './containers/App/App';
+import { ApolloProvider } from '@apollo/client';
 import * as serviceWorker from './serviceWorker';
+import client from './graphql/client';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  </ApolloProvider>,
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
