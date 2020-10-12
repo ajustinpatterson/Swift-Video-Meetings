@@ -31,6 +31,10 @@ const resolvers = {
           message: 'User successfully deleted'
         }
       }
+    },
+    async updateName (_: any, { id, ...args }: any) {
+      const user = await db.User.findOne({ id })
+      //
     }
   }
 }
