@@ -1,10 +1,11 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-const app = express();
 import dotenv from 'dotenv';
 dotenv.config();
 import socketio from 'socket.io';
 import { Server } from 'http';
+
+const app = express();
 
 const router = require('./router');
 const typeDefs = require('./typeDefs');
@@ -13,8 +14,9 @@ const resolvers = require('./resolvers');
 const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app });
 
-const serverExpress = new Server(app)
-const io = socketio(serverExpress);
+const expressServer = new Server(app);
+
+const io = socketio(expressServer);
 
 app.use(router);
 
