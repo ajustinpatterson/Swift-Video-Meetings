@@ -1,5 +1,3 @@
-import * as io from 'socket.io';
-
 const socket = io('/');
 
 const videoGrid = document.getElementById('video-grid');
