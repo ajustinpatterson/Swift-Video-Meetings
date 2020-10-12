@@ -20,7 +20,8 @@
     "commitizen": "^4.2.1"
   },
   "devDependencies": {
-    "cz-conventional-changelog": "^3.3.0"
+    "cz-conventional-changelog": "^3.3.0",
+    "socket.io": "^2.3.0"
   },
   "config": {
     "commitizen": {

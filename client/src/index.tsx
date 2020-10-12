@@ -9,7 +9,7 @@ import Landing from './components/Landing/Landing';
 
 ReactDOM.render(
   <ApolloProvider client={userClient}>
-    <Landing />
+    <App />
   </ApolloProvider>,
   document.getElementById('root'),
 );
