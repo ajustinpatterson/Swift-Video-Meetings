@@ -4,11 +4,12 @@ import './index.css';
 import App from './containers/App/App';
 import { ApolloProvider } from '@apollo/client';
 import * as serviceWorker from './serviceWorker';
-import client from './graphql/client';
+import userClient from './graphql/Client';
+import Landing from './components/Landing/Landing';
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
+  <ApolloProvider client={userClient}>
+    <Landing />
   </ApolloProvider>,
   document.getElementById('root'),
 );

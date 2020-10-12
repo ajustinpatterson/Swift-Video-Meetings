@@ -1,7 +1,7 @@
 import React from 'react';
 
-const PowderRoom = () => {
+const Loader = () => {
   return <div></div>;
 };
 
-export default PowderRoom;
+export default Loader;
