@@ -1,0 +1,30 @@
+{
+  "name": "root-dependencies",
+  "version": "1.0.0",
+  "description": "dependencies for root only",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Andrea-Dispe/name-to-be-changed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Andrea-Dispe/name-to-be-changed/issues"
+  },
+  "homepage": "https://github.com/Andrea-Dispe/name-to-be-changed#readme",
+  "dependencies": {
+    "commitizen": "^4.2.1"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
