@@ -14,13 +14,23 @@ const resolvers = {
         name: input.name,
         email: input.name
       })
+      if (newUser) {
+        return {
+          success: true,
+          message: 'User successfully created'
+        }
+      }
       return newUser;
     },
-    async updateUser (_: any, { id }: any) {
-
-    },
     async deleteUser (_: any, { id }: any) {
-
+      const user = await db.User.findOne({ id });
+      const deletedUser = await user.destroy();
+      if (deletedUser) {
+        return {
+          success: true,
+          message: 'User successfully deleted'
+        }
+      }
     }
   }
 }
