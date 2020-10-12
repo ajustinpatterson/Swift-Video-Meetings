@@ -8,16 +8,20 @@ const resolvers = {
     }
   },
   Mutation: {
-    // async createUser (_, {id: any}, ctx: any) {
-      // const user = ctx.request.body;
-      // const newUser = await db.User.create({
-      //   name: user.name,
-      //   email: user.email,
-      //   bio: user.bio,
-      //   avatar: user.avatar
-      // });
-      // return newUser;
-    // }
+    async createUser (_: any, { input }: any) {
+      const newUser = await db.User.create({
+        id: input.id,
+        name: input.name,
+        email: input.name
+      })
+      return newUser;
+    },
+    async updateUser (_: any, { id }: any) {
+
+    },
+    async deleteUser (_: any, { id }: any) {
+
+    }
   }
 }
 
