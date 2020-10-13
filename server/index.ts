@@ -10,7 +10,7 @@ import { router } from './routes/router';
 import { typeDefs } from './graphql/typeDefs';
 import { resolvers } from './graphql/resolvers';
 
-const db = require('./model/db');
+import { db } from './model/db';
 
 const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app });

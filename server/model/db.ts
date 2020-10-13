@@ -1,11 +1,11 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize, DataTypes } from "sequelize";
 import dotenv from 'dotenv';
 dotenv.config;
 
 const fs = require('fs');
 const path = require('path');
 const basename = path.basename(__filename);
-const db: {} = {};
+let db: {} = {};
 
 const dbName = process.env.DATABASE;
 const userName = process.env.USERNAME;
@@ -29,7 +29,9 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+db = {
+  sequelize: sequelize,
+  Sequelize: Sequelize,
+}
 
 export { db };
