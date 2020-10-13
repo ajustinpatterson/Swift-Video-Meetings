@@ -11,6 +11,22 @@ export interface CreateUserInput {
   avatar: string
 };
 
+export interface UpdateUserInput {
+  id: string
+  email: string
+  name: string
+  bio: string
+  avatar: string
+};
+
 export interface MutationCreateUser {
   userDetails: CreateUserInput
+}
+
+export interface MutationDeleteUser {
+  id: string
+}
+
+export interface MutationUpdateUser {
+  userDetails: UpdateUserInput
 }
