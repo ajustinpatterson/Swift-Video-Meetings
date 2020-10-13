@@ -1,9 +1,13 @@
 import { Sequelize } from "sequelize";
-import dotenv from 'dotenv';
 import UserFactory from "./user";
+import dotenv from 'dotenv';
 dotenv.config;
 
-let sequelize = new Sequelize('zoomapp', 'postgres', 'postgres', {
+const database = process.env.DATABASE;
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
+
+let sequelize = new Sequelize(database, 'postgres', 'postgres', {
   dialect: 'postgres',
 });
 

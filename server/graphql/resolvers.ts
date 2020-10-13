@@ -1,7 +1,6 @@
 import { db } from '../model/db';
-import {UserAttributes} from '../model/user';
 import { EmailAddressResolver, UUIDResolver } from 'graphql-scalars';
-import {MutationUpdateName} from './types';
+import { MutationUpdateEmail, MutationCreateUser } from './types';
 
 const resolvers = {
   Query: {
@@ -11,11 +10,11 @@ const resolvers = {
     }
   },
   Mutation: {
-    async createUser (_: any, { input }: any) {
+    async createUser (_: any, { userDetails }: MutationCreateUser) {
       const newUser = await db.User.create({
-        id: input.id,
-        name: input.name,
-        email: input.name
+        id: userDetails.id,
+        name: userDetails.name,
+        email: userDetails.name
       })
       if (newUser) {
         return {
@@ -35,13 +34,12 @@ const resolvers = {
     //     }
     //   }
     // },
-    async updateName (_: any, { id, email }: MutationUpdateName) {
-      //arguments passed from client
+    async updateEmail (_: any, { id, email }: MutationUpdateEmail) {
       const user = await db.User.update({ email }, {where: { id: id }} )
       if (user) {
         return {
           success: true,
-          message: 'Name successfully updated'
+          message: 'Email successfully updated'
         }
       }
     }

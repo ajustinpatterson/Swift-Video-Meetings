@@ -8,7 +8,7 @@ export interface UserAttributes {
   avatar?: string
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, "id"| "email"> {}
+interface UserCreationAttributes extends Optional<UserAttributes, "id"| "email" | "name"> {}
 
 export default function (sequelize: Sequelize) {
   const user: ModelDefined <UserAttributes, UserCreationAttributes> = sequelize.define('User', {

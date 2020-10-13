@@ -11,7 +11,7 @@ const typeDefs = gql `
   scalar UUID
 
   type User {
-    id: String!
+    id: ID!
     name: String!
     email: String!
     bio: String
@@ -23,19 +23,16 @@ const typeDefs = gql `
   }
 
   input CreateUserInput {
-    id: String!
+    id: ID!
     name: String!
     email: String!
+    bio: String
+    avatar: String
   }
 
   type Mutation {
-    createUser(input: CreateUserInput!): User!
-    deleteUser(id: String!): User!
-    updateName(id: String!, email: String!): User!
-    updateEmail(id: String!, email: String!): User!
-    updateBio(id: String!, bio: String!): User!
-    updateAvatar(id: String!, avatar: String!): User!
-
+    createUser(userDetails: CreateUserInput!): User!
+    updateEmail(id: ID!, email: String!): User!
   }
 `
 
