@@ -10,6 +10,7 @@ import {
 const resolvers = {
 
   EmailAddress: EmailAddressResolver,
+  UUID: UUIDResolver,
 
   Query: {
     async getUsers () {
