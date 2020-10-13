@@ -1,5 +1,7 @@
 const db = require('../model/db');
 
+import { EmailAddressResolver } from 'graphql-scalars';
+
 const resolvers = {
   Query: {
     async getUsers () {
@@ -12,9 +14,7 @@ const resolvers = {
       const newUser = await db.User.create({
         id: input.id,
         name: input.name,
-        email: input.name,
-        bio: input.bio,
-        avatar: input.avatar
+        email: input.name
       })
       if (newUser) {
         return {
@@ -24,8 +24,8 @@ const resolvers = {
       }
       return newUser;
     },
-    async deleteUser (_: any, { email }: any) {
-      const user = await db.User.findOne({ email });
+    async deleteUser (_: any, { id }: any) {
+      const user = await db.User.findOne({ id });
       const deletedUser = await user.destroy();
       if (deletedUser) {
         return {
@@ -42,7 +42,7 @@ const resolvers = {
       if (userSaved) {
         return {
           success: true,
-          messae: 'Name successfully updated'
+          message: 'Name successfully updated'
         }
       }
     }

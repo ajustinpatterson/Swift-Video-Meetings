@@ -1,10 +1,17 @@
-const Sequelize = require('sequelize');
+import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
+dotenv.config;
 
 const fs = require('fs');
 const path = require('path');
 const basename = path.basename(__filename);
-const db = {};
-let sequelize = new Sequelize('zoomapp', 'postgres', 'postgres', {
+const db: {} = {};
+
+const dbName = process.env.DATABASE;
+const userName = process.env.USERNAME;
+const password = process.env.PASSWORD;
+
+const sequelize = new Sequelize(dbName, userName, password, {
   dialect: 'postgres',
 });
 fs
@@ -24,4 +31,5 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-module.exports = db;
+
+export { db };

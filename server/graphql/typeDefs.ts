@@ -1,10 +1,13 @@
 import { gql } from 'apollo-server-express';
 
 const typeDefs = gql `
+
+  scalar EmailAddress
+
   type User {
-    id: String!
+    id: ID!
     name: String!
-    email: String!
+    email: EmailAddress!
     bio: String
     avatar: String
   }
@@ -14,18 +17,18 @@ const typeDefs = gql `
   }
 
   input CreateUserInput {
-    id: String!
+    id: ID!
     name: String!
-    email: String!
+    email: EmailAddress!
   }
 
   type Mutation {
     createUser(input: CreateUserInput!): User!
-    deleteUser(email: String!): User!
-    updateName(id: String!, name: String!): User!
-    updateEmail(id: String!, email: String!): User!
-    updateBio(id: String!, bio: String!): User!
-    updateAvatar(id: String!, avatar: String!): User!
+    deleteUser(id: ID!): User!
+    updateName(id: ID!, name: String!): User!
+    updateEmail(id: ID!, email: EmailAddress!): User!
+    updateBio(id: ID!, bio: String!): User!
+    updateAvatar(id: ID!, avatar: String!): User!
   }
 `
 

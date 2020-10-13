@@ -42,3 +42,14 @@ const port: number = Number(process.env.PORT);
     console.error('Error connecting to the db', error);
   }
 })();
+
+io.on('connection', socket => {
+  socket.on('join-room', (roomId, userId) => {
+    socket.join(roomId)
+    socket.to(roomId).broadcast.emit('user-connected', userId)
+
+    socket.on('disconnect', () => {
+      socket.to(roomId).broadcast.emit('user-disconnected', userId)
+    })
+  })
+})
