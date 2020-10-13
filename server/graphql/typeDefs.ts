@@ -2,12 +2,18 @@ import { gql } from 'apollo-server-express';
 
 const typeDefs = gql `
 
+  schema {
+    query: Query
+    mutation: Mutation
+  }
+
   scalar EmailAddress
+  scalar UUID
 
   type User {
-    id: ID!
+    id: String!
     name: String!
-    email: EmailAddress!
+    email: String!
     bio: String
     avatar: String
   }
@@ -17,18 +23,19 @@ const typeDefs = gql `
   }
 
   input CreateUserInput {
-    id: ID!
+    id: String!
     name: String!
-    email: EmailAddress!
+    email: String!
   }
 
   type Mutation {
     createUser(input: CreateUserInput!): User!
-    deleteUser(id: ID!): User!
-    updateName(id: ID!, name: String!): User!
-    updateEmail(id: ID!, email: EmailAddress!): User!
-    updateBio(id: ID!, bio: String!): User!
-    updateAvatar(id: ID!, avatar: String!): User!
+    deleteUser(id: String!): User!
+    updateName(id: String!, email: String!): User!
+    updateEmail(id: String!, email: String!): User!
+    updateBio(id: String!, bio: String!): User!
+    updateAvatar(id: String!, avatar: String!): User!
+
   }
 `
 

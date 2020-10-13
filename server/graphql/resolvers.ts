@@ -1,6 +1,7 @@
-const db = require('../model/db');
-
-import { EmailAddressResolver } from 'graphql-scalars';
+import { db } from '../model/db';
+import {UserAttributes} from '../model/user';
+import { EmailAddressResolver, UUIDResolver } from 'graphql-scalars';
+import {MutationUpdateName} from './types';
 
 const resolvers = {
   Query: {
@@ -24,22 +25,20 @@ const resolvers = {
       }
       return newUser;
     },
-    async deleteUser (_: any, { id }: any) {
-      const user = await db.User.findOne({ id });
-      const deletedUser = await user.destroy();
-      if (deletedUser) {
-        return {
-          success: true,
-          message: 'User successfully deleted'
-        }
-      }
-    },
-    async updateName (_: any, { id, name }: any) {
-      const user = await db.User.findOne({ id })
+    // async deleteUser (_: any, { id }: any) {
+    //   const user = await db.User.findOne({ id });
+    //   const deletedUser = await user.destroy();
+    //   if (deletedUser) {
+    //     return {
+    //       success: true,
+    //       message: 'User successfully deleted'
+    //     }
+    //   }
+    // },
+    async updateName (_: any, { id, email }: MutationUpdateName) {
       //arguments passed from client
-      user.name = { name };
-      const userSaved = await user.save();
-      if (userSaved) {
+      const user = await db.User.update({ email }, {where: { id: id }} )
+      if (user) {
         return {
           success: true,
           message: 'Name successfully updated'
