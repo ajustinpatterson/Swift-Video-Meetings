@@ -6,10 +6,15 @@ import { ApolloProvider } from '@apollo/client';
 import * as serviceWorker from './serviceWorker';
 import userClient from './graphql/Client';
 import Landing from './components/Landing/Landing';
+import { SocketContext } from "./socket-context";
 
 ReactDOM.render(
   <ApolloProvider client={userClient}>
-    <App />
+    <SocketContext.Consumer>
+        {(socket: any) => (
+          <App socket={socket} />
+        )}
+    </SocketContext.Consumer>
   </ApolloProvider>,
   document.getElementById('root'),
 );
