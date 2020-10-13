@@ -12,7 +12,9 @@ const resolvers = {
       const newUser = await db.User.create({
         id: input.id,
         name: input.name,
-        email: input.name
+        email: input.name,
+        bio: input.bio,
+        avatar: input.avatar
       })
       if (newUser) {
         return {
@@ -35,8 +37,14 @@ const resolvers = {
     async updateName (_: any, { id, name }: any) {
       const user = await db.User.findOne({ id })
       //arguments passed from client
-      user.name = name;
-      await user.save();
+      user.name = { name };
+      const userSaved = await user.save();
+      if (userSaved) {
+        return {
+          success: true,
+          messae: 'Name successfully updated'
+        }
+      }
     }
   }
 }

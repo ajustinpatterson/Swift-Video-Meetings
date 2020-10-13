@@ -2,6 +2,7 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import socketio from 'socket.io';
 import { Server } from 'http';
+import cors from 'cors';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
+app.use(cors());
 app.use(router);
 
 import dotenv from 'dotenv';
@@ -32,8 +34,9 @@ const port: number = Number(process.env.PORT);
 (async () =>{
   try {
     await db.sequelize.sync();
+    console.log('DB is connected 👍');
     expressServer.listen(port, ()=> {
-      console.log(`Server now running at port ${port}`)
+      console.log(`Server now running at port ${port} 👍👍👍`)
       })
     } catch (error) {
     console.error('Error connecting to the db', error);
