@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Peer from 'peerjs';
 import Meeting from '../../components/Meeting/Meeting';
 import './App.css';
+import Webcam from 'react-webcam';
+
+const WebcamComponent = () => <Webcam />;
 
 interface props {
   socket: any;
@@ -54,13 +57,14 @@ function App({ socket }: props) {
   // });
 
   return (
-    <div className="App">
-      {myVideo}
-      {console.log(socket)}
-      <a href="http://localhost:3002" target="_blank">
-        click here
-      </a>
-    </div>
+    // <div className="App">
+    //   {myVideo}
+    //   {console.log(socket)}
+    //   <a href="http://localhost:3002" target="_blank">
+    //     click here
+    //   </a>
+    // </div>
+    <WebcamComponent />
   );
 }
 
