@@ -9,7 +9,4 @@ const render = (req: any, res: any) => {
   res.render('room', {roomId: { room }});
 }
 
-module.exports = {
-  redirect,
-  render
-}
+export { redirect, render };

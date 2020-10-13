@@ -5,9 +5,10 @@ import { Server } from 'http';
 
 const app = express();
 
-const router = require('./routes/router');
-const typeDefs = require('./graphql/typeDefs');
-const resolvers = require('./graphql/resolvers');
+import { router } from './routes/router';
+import { typeDefs } from './graphql/typeDefs';
+import { resolvers } from './graphql/resolvers';
+
 const db = require('./model/db');
 
 const server = new ApolloServer({ typeDefs, resolvers });
