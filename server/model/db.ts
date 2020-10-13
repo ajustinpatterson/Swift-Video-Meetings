@@ -1,37 +1,17 @@
 import { Sequelize, DataTypes } from "sequelize";
 import dotenv from 'dotenv';
+import UserFactory from "./user";
 dotenv.config;
 
-const fs = require('fs');
-const path = require('path');
-const basename = path.basename(__filename);
-let db: {} = {};
-
-const dbName = process.env.DATABASE;
-const userName = process.env.USERNAME;
-const password = process.env.PASSWORD;
-
-const sequelize = new Sequelize(dbName, userName, password, {
+let sequelize = new Sequelize('zoomapp', 'postgres', 'postgres', {
   dialect: 'postgres',
 });
-fs
-  .readdirSync(__dirname)
-  .filter(file => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
-  })
-  .forEach(file => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-  });
-Object.keys(db).forEach(modelName => {
-  if (db[modelName].associate) {
-    db[modelName].associate(db);
-  }
-});
 
-db = {
+const db = {
   sequelize: sequelize,
   Sequelize: Sequelize,
+  User: UserFactory(sequelize)
+  //add models here if needed
 }
 
-export { db };
+export { db, sequelize };

@@ -1,14 +1,4 @@
-import { Sequelize, Model, DataTypes } from "sequelize";
-import dotenv from 'dotenv';
-dotenv.config();
-
-const dbName = process.env.DATABASE;
-const userName = process.env.USERNAME;
-const password = process.env.PASSWORD;
-const port = process.env.PORT;
-
-const sequelize = new Sequelize(`postgres://${userName}:${password}@localhost:${port}/${dbName}`)
-//const sequelize = new Sequelize("mysql://root:asd123@localhost:3306/mydb");
+import { Sequelize, ModelDefined, DataTypes, Optional, Model, UUID } from "sequelize";
 
 interface UserAttributes {
   id: string
@@ -18,41 +8,86 @@ interface UserAttributes {
   avatar?: string
 }
 
-class User extends Model<UserAttributes>
-  implements UserAttributes {
-    public id!: string;
-    public name!: string;
-    public email!: string;
-    public bio: string;
-    public avatar: string;
-};
+interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
 
-User.init(
-  {
-    id: {
-      type: DataTypes.STRING,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-    name: {
-      type: DataTypes.STRING(128),
-      allowNull: false,
-    },
-    email: {
-      type: new DataTypes.STRING(128),
-      allowNull: true,
-    },
-    bio: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    avatar: {
-      type: DataTypes.STRING,
-      allowNull: false,
+export default function (sequelize: Sequelize) {
+  const user: ModelDefined <UserAttributes, UserCreationAttributes> = sequelize.define('User', {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true,
+      },
+      name: {
+        type: DataTypes.STRING(128),
+        allowNull: false,
+      },
+      email: {
+        type: new DataTypes.STRING(128),
+        allowNull: false,
+      },
+      bio: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      avatar: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      }
     }
-  },
-  {
-    tableName: "users",
-    sequelize,
-  }
-);
+  );
+  return user;
+}
+
+// import { Sequelize, Model, DataTypes, Optional } from "sequelize";
+// import { sequelize } from './db';
+
+// interface UserAttributes {
+//   id: string
+//   name: string
+//   email: string
+//   bio? : string
+//   avatar?: string
+// }
+
+// interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
+
+// class User extends Model<UserAttributes, UserCreationAttributes>
+//   implements UserAttributes {
+//     public id!: string;
+//     public name!: string;
+//     public email!: string;
+//     public bio: string;
+//     public avatar: string;
+// };
+
+// User.init(
+//   {
+//     id: {
+//       type: DataTypes.STRING,
+//       autoIncrement: true,
+//       primaryKey: true,
+//     },
+//     name: {
+//       type: DataTypes.STRING(128),
+//       allowNull: false,
+//     },
+//     email: {
+//       type: new DataTypes.STRING(128),
+//       allowNull: false,
+//     },
+//     bio: {
+//       type: DataTypes.STRING,
+//       allowNull: true,
+//     },
+//     avatar: {
+//       type: DataTypes.STRING,
+//       allowNull: true,
+//     }
+//   },
+//   {
+//     tableName: "users",
+//     sequelize,
+//   }
+// );
+
+// export default User;
