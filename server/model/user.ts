@@ -3,12 +3,12 @@ import { Sequelize, ModelDefined, DataTypes, Optional, Model, UUID } from "seque
 export interface UserAttributes {
   id: string
   name: string
-  email: string
   bio? : string
   avatar?: string
+  status?: string
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, "id"| "email" | "name"> {}
+interface UserCreationAttributes extends Optional<UserAttributes, "id"| "name"> {}
 
 export default function (sequelize: Sequelize) {
   const user: ModelDefined <UserAttributes, UserCreationAttributes> = sequelize.define('User', {
@@ -21,10 +21,6 @@ export default function (sequelize: Sequelize) {
         type: DataTypes.STRING(128),
         allowNull: false,
       },
-      email: {
-        type: new DataTypes.STRING(128),
-        allowNull: false,
-      },
       bio: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -32,6 +28,10 @@ export default function (sequelize: Sequelize) {
       avatar: {
         type: DataTypes.STRING,
         allowNull: true,
+      },
+      status: {
+        type: DataTypes.STRING,
+        allowNull: true
       }
     }
   );

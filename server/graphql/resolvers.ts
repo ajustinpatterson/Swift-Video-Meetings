@@ -1,7 +1,6 @@
 import { db } from '../model/db';
-import { EmailAddressResolver, UUIDResolver } from 'graphql-scalars';
+import { UUIDResolver } from 'graphql-scalars';
 import {
-  MutationUpdateEmail,
   MutationCreateUser,
   MutationDeleteUser,
   MutationUpdateUser
@@ -9,7 +8,6 @@ import {
 
 const resolvers = {
 
-  EmailAddress: EmailAddressResolver,
   UUID: UUIDResolver,
 
   Query: {
@@ -22,37 +20,26 @@ const resolvers = {
     async createUser (_: any, { userDetails }: MutationCreateUser) {
       const newUser = await db.User.create({
         name: userDetails.name,
-        email: userDetails.email,
         bio: userDetails.bio,
-        avatar: userDetails.avatar
+        avatar: userDetails.avatar,
+        status: userDetails.status
       })
       return newUser;
     },
     async deleteUser (_: any, { id }: MutationDeleteUser) {
       const user = await db.User.findOne({ where: { id } });
-      if (user) {
-        await user.destroy();
-        return {
-          success: true,
-          message: 'User successfully deleted'
-        }
-      }
+      await user.destroy();
+      return user;
     },
-    async updateEmail (_: any, { id, email }: MutationUpdateEmail) {
-      const user = await db.User.update({ email }, {where: { id: id }} )
-      if (user) {
-        return {
-          success: true,
-          message: 'Email successfully updated'
-        }
-      }
-    },
-    async updateUser (_: any, { userDetails }: MutationUpdateUser, ctx: any) {
-      console.log('HEREEEE', ctx)
-      // const updatedUser = Object.assign(ctx.user, userDetails)
+    async updateUser (_: any, { userDetails }: MutationUpdateUser, { db }: any) {
+      if (!userDetails) throw new Error('Oops, no user details provided!');
+      const updatedUserDetails = Object.assign(db, userDetails);
+      const updatedUser = await db.User.update(updatedUserDetails, { where: {id: userDetails.id}, returning: true});
+      if (!updatedUser) throw new Error ('User not updated');
+      console.log(updatedUser);
+      return updatedUser[1][0];
     }
   },
-
 };
 
 export { resolvers };

@@ -7,39 +7,37 @@ const typeDefs = gql `
     mutation: Mutation
   }
 
-  scalar EmailAddress
   scalar UUID
 
   type User {
     id: UUID!
     name: String!
-    email: EmailAddress!
     bio: String
     avatar: String
+    status: String
+  }
+
+  input CreateUserInput {
+    name: String!
+    bio: String
+    avatar: String
+    status: String
+  }
+
+  input UpdateUserInput {
+    id: UUID!
+    name: String
+    bio: String
+    avatar: String
+    status: String
   }
 
   type Query {
     getUsers: [User]!
   }
 
-  input CreateUserInput {
-    name: String!
-    email: EmailAddress!
-    bio: String
-    avatar: String
-  }
-
-  input UpdateUserInput {
-    id: UUID
-    name: String
-    email: EmailAddress
-    bio: String
-    avatar: String
-  }
-
   type Mutation {
     createUser(userDetails: CreateUserInput!): User!
-    updateEmail(id: UUID!, email: EmailAddress!): User!
     deleteUser(id: UUID!): User!
     updateUser(userDetails: UpdateUserInput!): User!
   }

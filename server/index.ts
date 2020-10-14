@@ -1,5 +1,5 @@
 import express from 'express';
-import { ApolloServer } from 'apollo-server-express';
+import { ApolloServer, UserInputError } from 'apollo-server-express';
 import socketio from 'socket.io';
 import { Server } from 'http';
 import cors from 'cors';
@@ -12,7 +12,14 @@ import { resolvers } from './graphql/resolvers';
 
 import { db } from './model/db';
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  async context () {
+    return { db };
+  }
+});
+
 server.applyMiddleware({ app });
 
 const expressServer = new Server(app);
