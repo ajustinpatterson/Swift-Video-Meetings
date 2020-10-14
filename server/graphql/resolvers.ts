@@ -6,8 +6,6 @@ import {
   MutationUpdateStatus,
   MutationUpdateUser
 } from './types';
-import { CITEXT } from 'sequelize/types';
-import { debuglog } from 'util';
 
 const resolvers = {
 
@@ -33,10 +31,6 @@ const resolvers = {
       const user = await db.User.findOne({ where: { id } });
       const deletedUser = await user.destroy();
       return deletedUser;
-    },
-    async updateStatus (_: any, { id, status }: MutationUpdateStatus) {
-      const user = await db.User.update({ status }, {where: { id }} );
-      return user;
     },
     async updateUser (_: any, { userDetails }: MutationUpdateUser, { db }: any) {
       console.log('HEREEEEE', db.user)
