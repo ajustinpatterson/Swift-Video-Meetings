@@ -3,7 +3,7 @@ import UserFactory from "./user";
 import dotenv from 'dotenv';
 dotenv.config;
 
-let sequelize = new Sequelize('zoomapp', 'postgres', 'postgres', {
+let sequelize = new Sequelize(process.env.DB_NAME, 'postgres', 'postgres', {
   dialect: 'postgres',
 });
 
