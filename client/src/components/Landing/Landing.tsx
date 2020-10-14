@@ -56,7 +56,9 @@ const Landing = () => {
           cookiePolicy={'single_host_origin'}
         />
       ) : (
-        <button className="button">Start Meeting</button>
+        <button className="button" onClick={handleClick}>
+          Start Meeting
+        </button>
       )}
     </div>
   );
