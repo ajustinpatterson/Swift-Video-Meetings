@@ -3,7 +3,7 @@ import UserFactory from "./user";
 import dotenv from 'dotenv';
 dotenv.config;
 
-const database = process.env.DATABASE;
+const database = process.env.DB_NAME;
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
 
