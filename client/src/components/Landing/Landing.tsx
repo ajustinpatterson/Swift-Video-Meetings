@@ -56,13 +56,7 @@ const Landing = () => {
           cookiePolicy={'single_host_origin'}
         />
       ) : (
-        <div>
-          <BrowserRouter>
-            <Link to="/" component={PowderRoom}>
-              <button className="button"></button>
-            </Link>
-          </BrowserRouter>
-        </div>
+        <button className="button">Start Meeting</button>
       )}
     </div>
   );
