@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Peer from 'peerjs';
+import Webcam from 'react-webcam';
 import Meeting from '../../components/Meeting/Meeting';
 import './App.css';
-import Webcam from 'react-webcam';
-
-const WebcamComponent = () => <Webcam />;
 
 interface props {
   socket: any;
@@ -12,39 +10,38 @@ interface props {
 
 function App({ socket }: props) {
   const connectToNewUser = (userId: string) => {};
-
-  const myPeer = new Peer(undefined, {
-    host: '/',
-    port: 3002,
-  });
-
-  const peers = {};
   let myVideo = <video />;
 
+  const videoRef = useRef(null);
+
   useEffect((): any => {
+    socket.on('connect', () => {
+      socket.emit('join-room', 12345, socket.id);
+      socket.on('user-connected', (userId: string) => {
+        console.log(userId);
+        connectToNewUser(userId);
+      });
+    });
     navigator.mediaDevices
       .getUserMedia({
         video: true,
         audio: true,
       })
       .then((stream: MediaStream) => {
-        addVideoStream(myVideo, stream);
-        console.log('inside video maker thing', myVideo);
-
-        myPeer.on('call', (call) => {
-          call.answer(stream);
-          const video = <video />;
-          call.on('stream', (userVideoStream) => {
-            addVideoStream(video, userVideoStream);
-          });
-        });
-        socket.on('connect', () => {
-          socket.emit('join-room', 12345, socket.id);
-          socket.on('user-connected', (userId: string) => {
-            console.log(userId);
-            connectToNewUser(userId);
-          });
-        });
+        console.log('stream: ', stream);
+        (videoRef.current! as any).video.srcObject = stream;
+        console.log('stream media', stream);
+        //addVideoStream(myVideo, stream);
+        // myPeer.on('call', (call) => {
+        //   call.answer(stream);
+        //   const video = <video />;
+        //   call.on('stream', (userVideoStream) => {
+        //     addVideoStream(video, userVideoStream);
+        //   });
+        // });
+        const res = stream.getVideoTracks();
+        console.log(res);
+        socket.emit('stream', stream);
       });
 
     function addVideoStream(video: any, stream: any) {
@@ -57,14 +54,13 @@ function App({ socket }: props) {
   // });
 
   return (
-    // <div className="App">
-    //   {myVideo}
-    //   {console.log(socket)}
-    //   <a href="http://localhost:3002" target="_blank">
-    //     click here
-    //   </a>
-    // </div>
-    <WebcamComponent />
+    <div className="App">
+      {myVideo}
+      {console.log(socket)}
+
+      {console.log(videoRef)}
+      <Webcam ref={videoRef} />
+    </div>
   );
 }
 
