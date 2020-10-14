@@ -16,10 +16,7 @@ const typeDefs = gql `
     email: EmailAddress!
     bio: String
     avatar: String
-  }
-
-  type Query {
-    getUsers: [User]!
+    status: String
   }
 
   input CreateUserInput {
@@ -27,20 +24,26 @@ const typeDefs = gql `
     email: EmailAddress!
     bio: String
     avatar: String
+    status: String
   }
 
   input UpdateUserInput {
-    id: UUID
+    id: UUID!
     name: String
     email: EmailAddress
     bio: String
     avatar: String
+    status: String
+  }
+
+  type Query {
+    getUsers: [User]!
   }
 
   type Mutation {
     createUser(userDetails: CreateUserInput!): User!
-    updateEmail(id: UUID!, email: EmailAddress!): User!
     deleteUser(id: UUID!): User!
+    updateStatus(id: UUID!, status: String!): User!
     updateUser(userDetails: UpdateUserInput!): User!
   }
 `

@@ -1,9 +1,9 @@
 import { db } from '../model/db';
 import { EmailAddressResolver, UUIDResolver } from 'graphql-scalars';
 import {
-  MutationUpdateEmail,
   MutationCreateUser,
   MutationDeleteUser,
+  MutationUpdateStatus,
   MutationUpdateUser
 } from './types';
 
@@ -30,26 +30,17 @@ const resolvers = {
     },
     async deleteUser (_: any, { id }: MutationDeleteUser) {
       const user = await db.User.findOne({ where: { id } });
-      if (user) {
-        await user.destroy();
-        return {
-          success: true,
-          message: 'User successfully deleted'
-        }
-      }
+      const deletedUser = await user.destroy();
+      return deletedUser;
     },
-    async updateEmail (_: any, { id, email }: MutationUpdateEmail) {
-      const user = await db.User.update({ email }, {where: { id: id }} )
-      if (user) {
-        return {
-          success: true,
-          message: 'Email successfully updated'
-        }
-      }
+    async updateStatus (_: any, { id, status }: MutationUpdateStatus) {
+      const user = await db.User.update({ status }, {where: { id }} );
+      return user;
     },
     async updateUser (_: any, { userDetails }: MutationUpdateUser, ctx: any) {
-      console.log('HEREEEE', ctx)
-      // const updatedUser = Object.assign(ctx.user, userDetails)
+      console.log('HERE', ctx)
+      console.log('HEYYYY', ctx.user)
+
     }
   },
 

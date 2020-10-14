@@ -6,6 +6,7 @@ export interface UserAttributes {
   email: string
   bio? : string
   avatar?: string
+  status?: string
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, "id"| "email" | "name"> {}
@@ -32,6 +33,10 @@ export default function (sequelize: Sequelize) {
       avatar: {
         type: DataTypes.STRING,
         allowNull: true,
+      },
+      status: {
+        type: DataTypes.STRING(200),
+        allowNull: false
       }
     }
   );
