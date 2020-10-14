@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 
-const [ name, setName ] = useState<string>('');
-const [ bio, setBio ] = useState<string>('');
-const [ avatar, setAvatar ] = useState<string>('');
-const [ status, setStatus ] = useState<string>('');
+interface User {
+  name: string;
+  bio: string;
+  avatar: string;
+  status: string;
+}
 
-const UserSettings = () => {
+const [ user, setUser] = useState<User>({
+  name: '',
+  bio: '',
+  avatar: '',
+  status: ''
+})
+
+export default function UserSettings (): JSX.Element {
   return <div>
     Hello World
   </div>;
 };
 
-export default UserSettings;
