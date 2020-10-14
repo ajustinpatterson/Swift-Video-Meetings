@@ -36,6 +36,7 @@ const resolvers = {
       const updatedUserDetails = Object.assign(db, userDetails);
       const updatedUser = await db.User.update(updatedUserDetails, { where: {id: userDetails.id}, returning: true});
       if (!updatedUser) throw new Error ('User not updated');
+      console.log(updatedUser);
       return updatedUser[1][0];
     }
   },
