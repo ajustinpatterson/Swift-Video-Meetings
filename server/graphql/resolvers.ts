@@ -1,5 +1,5 @@
 import { db } from '../model/db';
-import { EmailAddressResolver, UUIDResolver } from 'graphql-scalars';
+import { UUIDResolver } from 'graphql-scalars';
 import {
   MutationCreateUser,
   MutationDeleteUser,
@@ -9,7 +9,6 @@ import {
 
 const resolvers = {
 
-  EmailAddress: EmailAddressResolver,
   UUID: UUIDResolver,
 
   Query: {
@@ -22,9 +21,9 @@ const resolvers = {
     async createUser (_: any, { userDetails }: MutationCreateUser) {
       const newUser = await db.User.create({
         name: userDetails.name,
-        email: userDetails.email,
         bio: userDetails.bio,
-        avatar: userDetails.avatar
+        avatar: userDetails.avatar,
+        status: userDetails.status
       })
       return newUser;
     },
@@ -40,7 +39,8 @@ const resolvers = {
     async updateUser (_: any, { userDetails }: MutationUpdateUser, ctx: any) {
       console.log('HERE', ctx)
       console.log('HEYYYY', ctx.user)
-
+      const updatedUserDetails = Object.assign(ctx, userDetails);
+      const updatedUser = await db.User.update
     }
   },
 

@@ -1,15 +1,13 @@
 export interface CreateUserInput {
   id: string
-  email: string
   name: string
-  bio: string
-  avatar: string
-  status: string
+  bio?: string
+  avatar?: string
+  status?: string
 };
 
 export interface UpdateUserInput {
   id: string
-  email?: string
   name?: string
   bio?: string
   avatar?: string

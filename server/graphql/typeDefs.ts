@@ -7,13 +7,11 @@ const typeDefs = gql `
     mutation: Mutation
   }
 
-  scalar EmailAddress
   scalar UUID
 
   type User {
     id: UUID!
     name: String!
-    email: EmailAddress!
     bio: String
     avatar: String
     status: String
@@ -21,7 +19,6 @@ const typeDefs = gql `
 
   input CreateUserInput {
     name: String!
-    email: EmailAddress!
     bio: String
     avatar: String
     status: String
@@ -30,7 +27,6 @@ const typeDefs = gql `
   input UpdateUserInput {
     id: UUID!
     name: String
-    email: EmailAddress
     bio: String
     avatar: String
     status: String
