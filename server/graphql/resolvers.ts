@@ -3,7 +3,6 @@ import { UUIDResolver } from 'graphql-scalars';
 import {
   MutationCreateUser,
   MutationDeleteUser,
-  MutationUpdateStatus,
   MutationUpdateUser
 } from './types';
 
@@ -29,17 +28,17 @@ const resolvers = {
     },
     async deleteUser (_: any, { id }: MutationDeleteUser) {
       const user = await db.User.findOne({ where: { id } });
-      const deletedUser = await user.destroy();
-      return deletedUser;
+      await user.destroy();
+      return user;
     },
     async updateUser (_: any, { userDetails }: MutationUpdateUser, { db }: any) {
-      console.log('HEREEEEE', db.user)
+      if (!userDetails) throw new Error('Oops, no user details provided!');
       const updatedUserDetails = Object.assign(db, userDetails);
-      const updatedUser = await db.User.update(updatedUserDetails, { where: {id: userDetails.id}});
-      return updatedUser;
+      const updatedUser = await db.User.update(updatedUserDetails, { where: {id: userDetails.id}, returning: true});
+      if (!updatedUser) throw new Error ('User not updated');
+      return updatedUser[1][0];
     }
   },
-
 };
 
 export { resolvers };

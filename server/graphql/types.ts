@@ -22,11 +22,6 @@ export interface MutationDeleteUser {
   id: string
 }
 
-export interface MutationUpdateStatus {
-  id: string
-  status: string
-}
-
 export interface MutationUpdateUser {
   userDetails: UpdateUserInput
 }
