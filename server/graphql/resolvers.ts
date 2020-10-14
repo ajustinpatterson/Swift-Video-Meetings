@@ -38,6 +38,8 @@ const resolvers = {
       return user;
     },
     async updateUser (_: any, { userDetails }: MutationUpdateUser, ctx: any) {
+      console.log('HERE', ctx)
+      console.log('HEYYYY', ctx.user)
 
     }
   },
