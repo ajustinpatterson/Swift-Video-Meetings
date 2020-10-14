@@ -1,11 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { GoogleLogin } from 'react-google-login';
+import {
+  BrowserRouter,
+  Router,
+  Route,
+  useHistory,
+  Link,
+} from 'react-router-dom';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
 import './Landing.css';
+import PowderRoom from '../PowderRoom/PowderRoom';
+
+const apiId =
+  '770694473973-nsm7s39sp1tvm3jpg6d3pk7ln309gvbr.apps.googleusercontent.com';
 
 const Landing = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userName, setUserName] = useState('');
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/powderroom');
+  };
 
   const responseGoogle = async (response: any) => {
     try {
@@ -24,7 +40,7 @@ const Landing = () => {
       <img src={logo} alt="Logo" />
       {!loggedIn ? (
         <GoogleLogin
-          clientId="770694473973-nsm7s39sp1tvm3jpg6d3pk7ln309gvbr.apps.googleusercontent.com"
+          clientId={apiId}
           render={(renderProps) => (
             <button
               className="button"
@@ -40,7 +56,13 @@ const Landing = () => {
           cookiePolicy={'single_host_origin'}
         />
       ) : (
-        <button className="button">Start Meeting</button>
+        <div>
+          <BrowserRouter>
+            <Link to="/" component={PowderRoom}>
+              <button className="button"></button>
+            </Link>
+          </BrowserRouter>
+        </div>
       )}
     </div>
   );
