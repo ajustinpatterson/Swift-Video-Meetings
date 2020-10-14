@@ -1,15 +1,13 @@
 import { db } from '../model/db';
-import { EmailAddressResolver, UUIDResolver } from 'graphql-scalars';
+import { UUIDResolver } from 'graphql-scalars';
 import {
   MutationCreateUser,
   MutationDeleteUser,
-  MutationUpdateStatus,
   MutationUpdateUser
 } from './types';
 
 const resolvers = {
 
-  EmailAddress: EmailAddressResolver,
   UUID: UUIDResolver,
 
   Query: {
@@ -22,28 +20,26 @@ const resolvers = {
     async createUser (_: any, { userDetails }: MutationCreateUser) {
       const newUser = await db.User.create({
         name: userDetails.name,
-        email: userDetails.email,
         bio: userDetails.bio,
-        avatar: userDetails.avatar
+        avatar: userDetails.avatar,
+        status: userDetails.status
       })
       return newUser;
     },
     async deleteUser (_: any, { id }: MutationDeleteUser) {
       const user = await db.User.findOne({ where: { id } });
-      const deletedUser = await user.destroy();
-      return deletedUser;
-    },
-    async updateStatus (_: any, { id, status }: MutationUpdateStatus) {
-      const user = await db.User.update({ status }, {where: { id }} );
+      await user.destroy();
       return user;
     },
-    async updateUser (_: any, { userDetails }: MutationUpdateUser, ctx: any) {
-      console.log('HERE', ctx)
-      console.log('HEYYYY', ctx.user)
-
+    async updateUser (_: any, { userDetails }: MutationUpdateUser, { db }: any) {
+      if (!userDetails) throw new Error('Oops, no user details provided!');
+      const updatedUserDetails = Object.assign(db, userDetails);
+      const updatedUser = await db.User.update(updatedUserDetails, { where: {id: userDetails.id}, returning: true});
+      if (!updatedUser) throw new Error ('User not updated');
+      console.log(updatedUser);
+      return updatedUser[1][0];
     }
   },
-
 };
 
 export { resolvers };
