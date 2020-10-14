@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Peer from 'peerjs';
-import Webcam from 'react-webcam';
-import Meeting from '../../components/Meeting/Meeting';
+import Meeting from '../Meeting/Meeting';
 import './App.css';
 import Landing from '../../components/Landing/Landing';
 
