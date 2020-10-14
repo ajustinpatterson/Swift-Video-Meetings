@@ -3,6 +3,6 @@ db:
   ports:
     - "5432:5432"
   environment:
-    - POSTGRES_USER=postgres
-    - POSTGRES_PASSWORD=postgres
-    - POSTGRES_DB=zoomapp
+    - POSTGRES_USER=process.env.DB_USERNAME
+    - POSTGRES_PASSWORD=process.env.DB_PASSWORD
+    - POSTGRES_DB=process.env.DB_NAME
