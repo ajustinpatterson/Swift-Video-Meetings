@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
-
-interface User {
-  name: string;
-  bio: string;
-  avatar: string;
-  status: string;
-}
-
-const [ user, setUser] = useState<User>({
-  name: '',
-  bio: '',
-  avatar: '',
-  status: ''
-})
+import { User}  from './User';
 
 export default function UserSettings (): JSX.Element {
-  return <div>
-    Hello World
-  </div>;
+
+  const [ user, setUser] = useState<User>({
+    name: '',
+    bio: '',
+    avatar: '',
+    status: ''
+  })
+
+  return (
+    <div>
+      User Settings
+    </div>
+  )
 };
 
