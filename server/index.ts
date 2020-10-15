@@ -51,10 +51,12 @@ const port: number = Number(process.env.PORT);
 })();
 
 io.on('connection', socket => {
-  socket.on('join-room', (roomId, userId) => {
+  console.log('connected')
+  socket.on('join-room', (roomId, userId, peerId) => {
+    console.log(roomId, userId)
     socket.join(roomId)
-    socket.to(roomId).broadcast.emit('user-connected', userId)
-
+    socket.to(roomId).broadcast.emit('user-connected', userId, peerId)
+​
     socket.on('disconnect', () => {
       socket.to(roomId).broadcast.emit('user-disconnected', userId)
     })

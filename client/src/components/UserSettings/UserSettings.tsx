@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { User}  from './User';
+import { User }  from './User';
 
 export default function UserSettings (): JSX.Element {
 
