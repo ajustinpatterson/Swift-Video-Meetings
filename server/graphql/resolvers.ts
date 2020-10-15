@@ -6,9 +6,6 @@ import {
   MutationUpdateUser
 } from './types';
 
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-
 const resolvers = {
 
   UUID: UUIDResolver,

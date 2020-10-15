@@ -12,9 +12,12 @@ const typeDefs = gql `
 
   type User {
     id: UUID!
-    name: String!
     email: EmailAddress!
-    token: String!
+    familyName: String!
+    givenName: String!
+    googleId: String!
+    imageUrl: String!
+    name: String!
     bio: String
     avatar: String
     status: String
@@ -40,9 +43,12 @@ const typeDefs = gql `
 
   input UpdateUserInput {
     id: UUID!
+    email: EmailAddress
+    familyName: String
+    givenName: String
+    googleId: String
+    imageUrl: String
     name: String
-    email: EmailAddress!
-    token: String!
     bio: String
     avatar: String
     status: String
