@@ -13,7 +13,8 @@ ReactDOM.render(
   <ApolloProvider client={userClient}>
     <SocketContext.Consumer>
         {(socket: any) => (
-          <App socket={socket} />
+          <PowderRoom />
+          // <App socket={socket} />
         )}
     </SocketContext.Consumer>
   </ApolloProvider>,

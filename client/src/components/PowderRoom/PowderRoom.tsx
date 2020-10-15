@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 import Webcam from 'react-webcam';
+import { BrowserRouter, Link } from 'react-router-dom';
+import Meeting from '../../containers/Meeting/Meeting';
 
-const PowderRoom = () => {
+const PowderRoom = (): JSX.Element => {
 
   const myVideoRef = useRef(null);
 
@@ -10,9 +12,12 @@ const PowderRoom = () => {
       <div>
         <Webcam ref={myVideoRef} />
       </div>
-      <div>
-        THIS IS THE POWDER ROOM. READY TO ENTER THE MEETING ROOM?
-      </div>
+
+      <BrowserRouter>
+        <Link to="/" component={Meeting}>
+          <button className="button">THIS IS THE POWDER ROOM. ENTER THE MEETING HERE</button>
+        </Link>
+      </BrowserRouter>
     </div>
   );
 };
