@@ -1,82 +1,101 @@
-<<<<<<< HEAD
 import Peer from 'peerjs';
 import Webcam from 'react-webcam';
 import React, { useState, useEffect, useRef } from 'react';
-=======
-import React, { useState, useEffect, useRef } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Routes from '../../components/Routes/Routes';
-import Meeting from '../Meeting/Meeting';
->>>>>>> origin/front-end-auth-and-nav
 import './App.css';
-
+// import {uuid} from '../../uuid';
 interface props {
   socket: any;
-  history: any;
 }
-
-<<<<<<< HEAD
+// console.log('uuid: ', uuid);
 function App({ socket }: props) {
-  const myVideoRef = useRef(null)
-  const otherVideoRef = useRef(null)
-  const [hasOtherJoined, setHasOtherJoined] = useState(false)
-  const connectToNewUser = (userId: string) => {};
+
+  const myVideoRef = useRef(null);
+
+  const otherVideoRef = useRef(null);
+
+  const [hasOtherJoined, setHasOtherJoined] = useState(false);
+
+  const [hasVideo, setHasVideo] = useState(true);
+
 
   useEffect(() => {
-    // connect the socket
+    // console.log(hasOtherJoined)
+
     socket.on('connect', () => {
+
+      // create the peerobject with no id which will be automaticaly assigned (uuid) on the open evennt
+      const peer = new Peer(undefined, {
+        host: 'localhost',
+        port: 4000,
+        path: '/',
+      });
+
       navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
+        .getUserMedia({
+          video: true,
+          audio: true
+        })
         .then((stream) => {
-          console.log('my stream', stream);
           (myVideoRef.current! as any).video.srcObject = stream;
-          // myVideoRef.current.video.srcObject = stream;
-          // create the peer
-          const peer = new Peer(undefined, {
-            host: 'localhost',
-            port: 4000,
-            path: '/',
-          });
+          console.log('my stream', stream);
+
+
           // set peer listeners
           peer.on('error', (err) => {
             console.log('error', err);
           });
+
+          // connection is emitted when a connection to the PeerServer is established.
           peer.on('connection', () => {
             console.log('some peer connected');
           });
-          // on open the peer it will tell the other user that a new user join
+
+          // open is emitted when a new data connection is established from a remote peer.
+          // the peerID is automatically generated here with the uuid lib
           peer.on('open', (peerId) => {
             console.log('My peerId ->', peerId);
             // to get the others peer id wee
             socket.emit('join-room', 12345, socket.id, peerId);
           });
+
           // whenever a new user connects it will connect to him through the peerId
           socket.on('user-connected', (userId: string, otherPeerId: string) => {
-            console.log('Other user peerId ->', otherPeerId);
-            const call = peer.call(otherPeerId, stream);
-            call.on('stream', (otherUserVideoStream) => {
-              // it gets called two times for each type of track audio and video
-              console.log('other stream', otherUserVideoStream);
-              addSecondVideoStream(otherUserVideoStream)
-            });
+            connectToNewUser(userId, otherPeerId, stream);
           });
 
+            // when the peer make a call
           peer.on('call', (call) => {
             call.answer(stream);
             // const video = document.createElement('video');
-            call.on('stream', (otherUserVideoStream) => {
+            call.on('stream', (otherUserStream) => {
               // it gets called two times for each type of track audio and video
-              console.log('other stream', otherUserVideoStream);
+              console.log('other stream', otherUserStream);
               // add other user video to dom
-              addSecondVideoStream(otherUserVideoStream)
+              addSecondVideoStream(otherUserStream)
             });
             call.on('close', () => {
-              // remove video
+              // disconnect the peer and get rid of the stream
+              peer.disconnect();
+              (otherVideoRef.current! as any).video.srcObject = null;
+              // this sets the hadOtherJoined to false
+              setHasOtherJoined(false);
+              console.log(hasOtherJoined);
+            });
             });
           });
         });
-    });
-  }, []);
+      }, []);
+
+  const connectToNewUser = (userId: string, otherPeerId: string, stream: MediaStream) => {
+    console.log('Other user peerId ->', otherPeerId);
+    // call is emitted when a remote peer attempts to call you.
+    const mediaConnection = peer.call(otherPeerId, stream);
+    mediaConnection.on('stream', (otherUserStream: any) => {
+      // it gets called two times for each type of track audio and video
+      console.log('other stream', otherUserStream);
+    addSecondVideoStream(otherUserStream)
+    })
+  };
 
   function addSecondVideoStream(stream: any) {
     setHasOtherJoined(true);
@@ -93,16 +112,6 @@ function App({ socket }: props) {
       <Webcam ref={myVideoRef} />
       {hasOtherJoined && <Webcam ref={otherVideoRef} />}
     </div>
-=======
-function App({ socket }: any) {
-  return (
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
->>>>>>> origin/front-end-auth-and-nav
   );
 }
-
 export default App;
-
-
