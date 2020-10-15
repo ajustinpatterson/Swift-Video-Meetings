@@ -1,8 +1,9 @@
 import express from 'express';
-import { ApolloServer, UserInputError } from 'apollo-server-express';
+import { ApolloServer } from 'apollo-server-express';
 import socketio from 'socket.io';
 import { Server } from 'http';
 import cors from 'cors';
+import { PeerServer } from 'peer';
 
 const app = express();
 
@@ -22,6 +23,8 @@ const server = new ApolloServer({
 });
 
 server.applyMiddleware({ app });
+
+const peerServer = PeerServer({ port: 4000, path: '/' });
 
 const expressServer = new Server(app);
 
