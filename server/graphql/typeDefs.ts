@@ -8,25 +8,41 @@ const typeDefs = gql `
   }
 
   scalar UUID
+  scalar EmailAddress
 
   type User {
     id: UUID!
     name: String!
+    email: EmailAddress!
+    token: String!
     bio: String
     avatar: String
     status: String
   }
 
-  input CreateUserInput {
+  type NewUser {
+    email: EmailAddress!
+    familyName: String!
+    givenName: String!
+    googleId: String!
+    imageUrl: String!
     name: String!
-    bio: String
-    avatar: String
-    status: String
+  }
+
+  input CreateUserInput {
+    email: EmailAddress!
+    familyName: String!
+    givenName: String!
+    googleId: String!
+    imageUrl: String!
+    name: String!
   }
 
   input UpdateUserInput {
     id: UUID!
     name: String
+    email: EmailAddress!
+    token: String!
     bio: String
     avatar: String
     status: String
@@ -37,7 +53,7 @@ const typeDefs = gql `
   }
 
   type Mutation {
-    createUser(userDetails: CreateUserInput!): User!
+    createUser(userDetails: CreateUserInput!): NewUser!
     deleteUser(id: UUID!): User!
     updateUser(userDetails: UpdateUserInput!): User!
   }

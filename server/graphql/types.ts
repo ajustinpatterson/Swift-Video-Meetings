@@ -1,14 +1,17 @@
 export interface CreateUserInput {
-  id: string
+  email: string
+  familyName: string
+  givenName: string
+  googleId: string
+  imageUrl: string
   name: string
-  bio?: string
-  avatar?: string
-  status?: string
 };
 
 export interface UpdateUserInput {
   id: string
   name?: string
+  email?: string
+  token?: string
   bio?: string
   avatar?: string
   status?: string

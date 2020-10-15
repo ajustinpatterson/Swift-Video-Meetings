@@ -1,14 +1,18 @@
 import { db } from '../model/db';
-import { UUIDResolver } from 'graphql-scalars';
+import { UUIDResolver, EmailAddressResolver } from 'graphql-scalars';
 import {
   MutationCreateUser,
   MutationDeleteUser,
   MutationUpdateUser
 } from './types';
 
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+
 const resolvers = {
 
   UUID: UUIDResolver,
+  EmailAddress: EmailAddressResolver,
 
   Query: {
     async getUsers () {
@@ -18,13 +22,18 @@ const resolvers = {
   },
   Mutation: {
     async createUser (_: any, { userDetails }: MutationCreateUser) {
+      const user = await db.User.findOne({ where: {email: userDetails.email} });
+      if (user) throw new Error ('email already exists'); //if no user, create one
       const newUser = await db.User.create({
-        name: userDetails.name,
-        bio: userDetails.bio,
-        avatar: userDetails.avatar,
-        status: userDetails.status
+        email: userDetails.email,
+        familyName: userDetails.familyName,
+        givenName: userDetails.givenName,
+        googleId: userDetails.googleId,
+        imageUrl: userDetails.imageUrl,
+        name: userDetails.name!
       })
       return newUser;
+      //if user exists, return user
     },
     async deleteUser (_: any, { id }: MutationDeleteUser) {
       const user = await db.User.findOne({ where: { id } });
@@ -36,7 +45,6 @@ const resolvers = {
       const updatedUserDetails = Object.assign(db, userDetails);
       const updatedUser = await db.User.update(updatedUserDetails, { where: {id: userDetails.id}, returning: true});
       if (!updatedUser) throw new Error ('User not updated');
-      console.log(updatedUser);
       return updatedUser[1][0];
     }
   },
