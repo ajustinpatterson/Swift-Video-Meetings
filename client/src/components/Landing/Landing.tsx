@@ -9,7 +9,6 @@ import {
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
 import './Landing.css';
-import PowderRoom from '../PowderRoom/PowderRoom';
 
 const apiId =
   '770694473973-nsm7s39sp1tvm3jpg6d3pk7ln309gvbr.apps.googleusercontent.com';
