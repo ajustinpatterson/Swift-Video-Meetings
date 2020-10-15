@@ -37,9 +37,16 @@
     "typescript": "^4.0.3"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "dotenv": "^8.2.0",
+=======
+    "@types/pg": "^7.14.5",
+    "@types/sequelize": "^4.28.9",
+>>>>>>> origin/front-end-auth-and-nav
     "http": "0.0.1-security",
     "path": "^0.12.7",
+    "pg": "^8.4.1",
+    "sequelize": "^6.3.5",
     "uuid": "^8.3.1"
   }
 }

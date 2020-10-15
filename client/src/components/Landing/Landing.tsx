@@ -9,7 +9,6 @@ import {
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
 import './Landing.css';
-import PowderRoom from '../PowderRoom/PowderRoom';
 
 const apiId =
   '770694473973-nsm7s39sp1tvm3jpg6d3pk7ln309gvbr.apps.googleusercontent.com';
@@ -56,13 +55,9 @@ const Landing = () => {
           cookiePolicy={'single_host_origin'}
         />
       ) : (
-        <div>
-          <BrowserRouter>
-            <Link to="/" component={PowderRoom}>
-              <button className="button"></button>
-            </Link>
-          </BrowserRouter>
-        </div>
+        <button className="button" onClick={handleClick}>
+          Start Meeting
+        </button>
       )}
     </div>
   );
