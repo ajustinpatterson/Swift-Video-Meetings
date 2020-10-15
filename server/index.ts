@@ -41,7 +41,7 @@ const port: number = Number(process.env.PORT);
 
 (async () =>{
   try {
-    await db.sequelize.sync({force: true}); //{force: true} if columns are added
+    await db.sequelize.sync(); //{force: true} if columns are added
     console.log('DB is connected 👍');
     expressServer.listen(port, ()=> {
       console.log(`Server now running at port ${port} 👍👍👍`)

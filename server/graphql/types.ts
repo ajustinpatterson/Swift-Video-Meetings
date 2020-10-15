@@ -9,9 +9,12 @@ export interface CreateUserInput {
 
 export interface UpdateUserInput {
   id: string
-  name?: string
   email?: string
-  token?: string
+  familyName?: string
+  givenName?: string
+  googleId?: string
+  imageUrl?: string
+  name?: string
   bio?: string
   avatar?: string
   status?: string
