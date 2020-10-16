@@ -5,9 +5,9 @@ import App from './containers/App/App';
 import { ApolloProvider } from '@apollo/client';
 import * as serviceWorker from './serviceWorker';
 import userClient from './graphql/Client';
-import Landing from './components/Landing/Landing';
+// import Landing from './components/Landing/Landing';
 import { SocketContext } from "./socket-context";
-import PowderRoom from './components/PowderRoom/PowderRoom'
+// import PowderRoom from './components/PowderRoom/PowderRoom'
 
 ReactDOM.render(
   <ApolloProvider client={userClient}>
