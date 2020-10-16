@@ -1,10 +1,4 @@
-@mixin vidBtn {
-  width: 60px;
-  height: 60px;
-  margin: 10px;
-  border: 1px solid gray;
-  border-radius: 60px;
-}
+@use '../../assets/MainStyles/Main' as Main;
 
 .mtngcontainer {
   display: flex;
@@ -28,19 +22,19 @@
 }
 
 .btn-on {
-  @include vidBtn();
+  @include Main.vidBtn();
 }
 .btn-on:hover {
   background-color: #cfcfcf;
 }
 .btn-off {
-  @include vidBtn();
+  @include Main.vidBtn();
 }
 .btn-off:hover {
   background-color: #cfcfcf;
 }
 .phnbtn {
-  @include vidBtn();
+  @include Main.vidBtn();
 }
 .phnbtn:hover {
   background-color: red;
@@ -48,14 +42,14 @@
 }
 
 .share-on {
-  @include vidBtn();
+  @include Main.vidBtn();
   background-color: #7066ff;
 }
 .share-on:hover {
   background-color: #cfcfcf;
 }
 .share-off {
-  @include vidBtn();
+  @include Main.vidBtn();
   opacity: 0.5;
 }
 .share-off:hover {
