@@ -6,6 +6,7 @@ import {
   useHistory,
   Link,
 } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
 import './Landing.css';
@@ -18,16 +19,34 @@ const Landing = () => {
   const [userName, setUserName] = useState('');
   const history = useHistory();
   const active = localStorage.getItem('loggedIn');
+  const [createUser, newUser] = useMutation(CREATE_USER);
 
   const handleClick = () => {
     history.push('/powderroom');
   };
+
+  interface MutationFields {
+    email: string;
+    familyName: string;
+    givenName: string;
+    googleId: string;
+    imageUrl: string;
+    name: string;
+  }
 
   const responseGoogle = async (response: any) => {
     try {
       console.log(response);
       if (response) {
         setUserName(response.profileObj.name);
+        createUser({
+          email: response.profileObj.email,
+          familyName: response.profileObj.familyName,
+          givenName: response.profileObj.givenName,
+          googleId: response.profileObj.googleId,
+          imageUrl: response.profileObj.imageUrl,
+          name: response.profileObj.name,
+        });
         localStorage.setItem('loggedIn', `${loggedIn}`);
         setLoggedIn(true);
       }
