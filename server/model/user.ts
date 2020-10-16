@@ -1,7 +1,7 @@
 import { Sequelize, ModelDefined, DataTypes, Optional, Model, UUID } from "sequelize";
 
 export interface UserAttributes {
-  id: string
+  _id: string
   email: string
   familyName: string
   givenName: string
@@ -13,11 +13,11 @@ export interface UserAttributes {
   status?: string
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, "id"| "name"> {}
+interface UserCreationAttributes extends Optional<UserAttributes, "_id"| "email" | "familyName" | "givenName" | "googleId" | "imageUrl" | "name"> {}
 
 export default function (sequelize: Sequelize) {
   const user: ModelDefined <UserAttributes, UserCreationAttributes> = sequelize.define('User', {
-      id: {
+      _id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true

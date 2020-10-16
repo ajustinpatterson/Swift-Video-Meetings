@@ -8,7 +8,7 @@ export interface CreateUserInput {
 };
 
 export interface UpdateUserInput {
-  id: string
+  _id: string
   email?: string
   familyName?: string
   givenName?: string
@@ -25,7 +25,7 @@ export interface MutationCreateUser {
 }
 
 export interface MutationDeleteUser {
-  id: string
+  _id: string
 }
 
 export interface MutationUpdateUser {
