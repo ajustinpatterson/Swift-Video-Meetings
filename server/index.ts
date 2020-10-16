@@ -30,10 +30,6 @@ const expressServer = new Server(app);
 
 const io = socketio(expressServer);
 
-app.set('view engine', 'ejs');
-
-app.use(express.static('public'));
-
 app.use(cors());
 app.use(router);
 
@@ -47,7 +43,7 @@ const port: number = Number(process.env.PORT);
     await db.sequelize.sync(); //{force: true} if columns are added
     console.log('DB is connected 👍');
     expressServer.listen(port, ()=> {
-      console.log(`Server now running at port ${port} 👍👍👍`)
+      console.log(`Server ready at http://localhost:${port}👍`)
       })
     } catch (error) {
     console.error('Error connecting to the db', error);

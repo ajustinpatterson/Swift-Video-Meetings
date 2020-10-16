@@ -1,4 +1,5 @@
 export interface CreateUserInput {
+  _id?: string
   email: string
   familyName: string
   givenName: string

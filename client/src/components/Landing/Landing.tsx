@@ -9,7 +9,7 @@ import {
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
 import './Landing.css';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, gql, useQuery } from '@apollo/client';
 import { stringify } from 'querystring';
 
 
@@ -17,21 +17,11 @@ const apiId =
   '770694473973-nsm7s39sp1tvm3jpg6d3pk7ln309gvbr.apps.googleusercontent.com';
 
 const CREATE_USER = gql`
-  mutation AddAUser(
-    $email: String!
-    $familyName: String!
-    $givenName: String!
-    $googleId: String!
-    $imageUrl: String!
-    $name: String!
+  mutation CreateUser(
+    $userDetails: CreateUserInput!
   ) {
     createUser(
-      email: $email
-      familyName: $familyName
-      givenName: $givenName
-      googleId: $googleId
-      imageUrl: $imageUrl
-      name: $name
+      userDetails: $userDetails
     ) {
       email
       familyName
@@ -43,12 +33,28 @@ const CREATE_USER = gql`
   }
 `;
 
+const TEST_QUERY = gql `
+  query getUser {
+    _id
+  }
+`
+
 const Landing = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userName, setUserName] = useState<String>('');
   const [createUser, newUser] = useMutation(CREATE_USER);
   const history = useHistory();
   const active = localStorage.getItem('loggedIn');
+
+  // const {data, loading, error} = useQuery(TEST_QUERY)
+
+  // if (data) {
+  //   console.log(data)
+  // }
+
+  // if (error) {
+  //   console.log(error)
+  // }
 
 
   const handleClick = () => {
@@ -63,12 +69,14 @@ const Landing = () => {
         setUserName(response.profileObj.name);
         createUser({
           variables: {
-            email: response.profileObj.email,
-            familyName: response.profileObj.familyName,
-            givenName: response.profileObj.givenName,
-            googleId: response.profileObj.googleId,
-            imageUrl: response.profileObj.imageUrl,
-            name: response.profileObj.name,
+            userDetails: {
+              email: response.profileObj.email,
+              familyName: response.profileObj.familyName,
+              givenName: response.profileObj.givenName,
+              googleId: response.profileObj.googleId,
+              imageUrl: response.profileObj.imageUrl,
+              name: response.profileObj.name,
+            }
           },
         });
         // localStorage.setItem('loggedIn', `${loggedIn}`);

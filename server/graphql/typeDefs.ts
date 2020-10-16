@@ -24,6 +24,7 @@ const typeDefs = gql `
   }
 
   type NewUser {
+    _id: String!
     email: EmailAddress!
     familyName: String!
     givenName: String!
@@ -33,7 +34,7 @@ const typeDefs = gql `
   }
 
   input CreateUserInput {
-    email: EmailAddress!
+    email: String!
     familyName: String!
     givenName: String!
     googleId: String!
