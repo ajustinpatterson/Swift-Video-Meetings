@@ -45,7 +45,7 @@ const CREATE_USER = gql`
 
 const Landing = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState<String>('');
   const [createUser, newUser] = useMutation(CREATE_USER);
   const history = useHistory();
   const active = localStorage.getItem('loggedIn');
@@ -58,6 +58,7 @@ const Landing = () => {
   const responseGoogle = async (response: any) => {
     try {
       console.log(response);
+      console.log(response.profileObj.email)
       if (response) {
         setUserName(response.profileObj.name);
         createUser({

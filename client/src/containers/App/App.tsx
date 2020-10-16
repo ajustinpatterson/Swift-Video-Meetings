@@ -2,6 +2,14 @@ import Peer from 'peerjs';
 import Webcam from 'react-webcam';
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
+import {
+  BrowserRouter,
+  Router,
+  Route,
+  useHistory,
+  Link,
+} from 'react-router-dom';
+import Routes from '../../components/Routes/Routes';
 // import {uuid} from '../../uuid';
 interface props {
   socket: any;
@@ -87,11 +95,16 @@ function App({ socket }: props) {
 
   return (
     <div className="App">
-      <a href="http://localhost:4000" target="_blank">
+      {/* <a href="http://localhost:4000" target="_blank">
         click here
       </a>
       <Webcam ref={myVideoRef} />
-      {hasOtherJoined && <Webcam ref={otherVideoRef} />}
+      {hasOtherJoined && <Webcam ref={otherVideoRef} />} */}
+
+      <BrowserRouter>
+        <Routes />
+
+      </BrowserRouter>
     </div>
   );
 }
