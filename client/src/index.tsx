@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import userClient from './graphql/Client';
 // import Landing from './components/Landing/Landing';
 import { SocketContext } from "./socket-context";
+import UserSettings from './components/UserSettings/UserSettings';
 // import PowderRoom from './components/PowderRoom/PowderRoom'
 
 ReactDOM.render(
@@ -14,7 +15,8 @@ ReactDOM.render(
     <SocketContext.Consumer>
         {(socket: any) => (
           // <PowderRoom />
-          <App socket={socket} />
+          // <App socket={socket} />
+          <UserSettings />
         )}
     </SocketContext.Consumer>
   </ApolloProvider>,

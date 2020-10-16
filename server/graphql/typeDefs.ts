@@ -11,15 +11,14 @@ const typeDefs = gql `
   scalar EmailAddress
 
   type User {
-    _id: UUID!
-    email: EmailAddress!
-    familyName: String!
-    givenName: String!
-    googleId: String!
-    imageUrl: String!
-    name: String!
+    _id: UUID
+    email: EmailAddress
+    familyName: String
+    givenName: String
+    googleId: String
+    imageUrl: String
+    name: String
     bio: String
-    avatar: String
     status: String
   }
 
@@ -34,7 +33,7 @@ const typeDefs = gql `
   }
 
   input CreateUserInput {
-    email: String!
+    email: EmailAddress!
     familyName: String!
     givenName: String!
     googleId: String!
@@ -51,7 +50,6 @@ const typeDefs = gql `
     imageUrl: String
     name: String
     bio: String
-    avatar: String
     status: String
   }
 

@@ -9,7 +9,6 @@ export interface UserAttributes {
   imageUrl: string
   name: string
   bio? : string
-  avatar?: string
   status?: string
 }
 
@@ -47,10 +46,6 @@ export default function (sequelize: Sequelize) {
         allowNull: false
       },
       bio: {
-        type: DataTypes.STRING,
-        allowNull: true
-      },
-      avatar: {
         type: DataTypes.STRING,
         allowNull: true
       },

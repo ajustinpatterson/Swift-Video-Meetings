@@ -17,7 +17,6 @@ export interface UpdateUserInput {
   imageUrl?: string
   name?: string
   bio?: string
-  avatar?: string
   status?: string
 };
 

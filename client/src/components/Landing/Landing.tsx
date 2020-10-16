@@ -33,11 +33,7 @@ const CREATE_USER = gql`
   }
 `;
 
-const TEST_QUERY = gql `
-  query getUser {
-    _id
-  }
-`
+
 
 const Landing = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -45,16 +41,6 @@ const Landing = () => {
   const [createUser, newUser] = useMutation(CREATE_USER);
   const history = useHistory();
   const active = localStorage.getItem('loggedIn');
-
-  // const {data, loading, error} = useQuery(TEST_QUERY)
-
-  // if (data) {
-  //   console.log(data)
-  // }
-
-  // if (error) {
-  //   console.log(error)
-  // }
 
 
   const handleClick = () => {
@@ -79,8 +65,7 @@ const Landing = () => {
             }
           },
         });
-        // localStorage.setItem('loggedIn', `${loggedIn}`);
-        // setLoggedIn(true);
+
       }
     } catch (err) {
       console.log(err);
@@ -118,64 +103,3 @@ const Landing = () => {
 
 export default Landing;
 
-
-//// export const GET_USERS = gql`
-//   query GetAllUsers {
-//     getUsers {
-//       id
-//       email
-//       familyName
-//       givenName
-//       googleId
-//       imageUrl
-//       name
-//     }
-//   }
-// `;
-
-// export const CREATE_USER = gql`
-//   mutation AddAUser($newUser: CreateUserInput) {
-//     createUser(userDetails: $newUser) {
-//       id
-//       email
-//       familyName
-//       givenName
-//       googleId
-//       imageUrl
-//       name
-//     }
-//   }
-// `;
-
-// export const UPDATE_USER = gql`
-//   mutation UpdateUser($input: MutationUpdateUser) {
-//     updateUser(input: userDetails) {
-//       id
-//       email
-//       familyName
-//       givenName
-//       googleId
-//       imageUrl
-//       name
-//       bio
-//       status
-//     }
-//   }
-// `;
-
-// export const UPDATE_EMAIL = gql`
-// mutation UpdateEmail($input: MutationUpdateEmail) {
-//   updateEmail({id, email}: $input) {
-//     id
-//     email
-//   }
-// }
-// `;
-
-// export const DELETE_USER = gql`
-//   mutation DeleteUser($input: MutationDeleteUser) {
-//     deleteUser(id: $input) {
-//       id
-//     }
-//   }
-// `;
