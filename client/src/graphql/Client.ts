@@ -1,37 +1,31 @@
-import { gql, ApolloClient, InMemoryCache } from '@apollo/client';
-
+import { gql, ApolloClient, InMemoryCache, HttpLink } from '@apollo/client';
 const userClient = new ApolloClient({
-  uri: 'https://48p1r2roz4.sse.codesandbox.io',
+  link: new HttpLink({
+    uri: 'http://localhost:3002/graphql',
+  }),
   cache: new InMemoryCache(),
 });
 
-// export const GET_USERS = gql`
-//   query GetAllUsers {
-//     getUsers {
-//       id
-//       email
-//       familyName
-//       givenName
-//       googleId
-//       imageUrl
-//       name
-//     }
-//   }
-// `;
+export const GET_USERS = gql`
+  query GetAllUsers {
+    getUsers {
+      _id
+    }
+  }
+`;
 
-// export const CREATE_USER = gql`
-//   mutation AddAUser($newUser: CreateUserInput) {
-//     createUser(userDetails: $newUser) {
-//       id
-//       email
-//       familyName
-//       givenName
-//       googleId
-//       imageUrl
-//       name
-//     }
-//   }
-// `;
+export const CREATE_USER = gql`
+  mutation CreateUser($userDetails: CreateUserInput!) {
+    createUser(userDetails: $userDetails) {
+      email
+      familyName
+      givenName
+      googleId
+      imageUrl
+      name
+    }
+  }
+`;
 
 // export const UPDATE_USER = gql`
 //   mutation UpdateUser($input: MutationUpdateUser) {

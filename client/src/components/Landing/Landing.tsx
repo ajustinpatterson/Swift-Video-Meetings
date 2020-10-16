@@ -9,36 +9,8 @@ import {
 import { useMutation } from '@apollo/client';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
+import { CREATE_USER } from '../../graphql/Client';
 import './Landing.css';
-
-//** */
-export const CREATE_USER = gql`
-  mutation AddAUser(
-    $email: String!
-    $familyName: String!
-    $givenName: String!
-    $googleId: String!
-    $imageUrl: String!
-    $name: String!
-  ) {
-    createUser(
-      email: $email
-      familyName: $familyName
-      givenName: $givenName
-      googleId: $googleId
-      imageUrl: $imageUrl
-      name: $name
-    ) {
-      email
-      familyName
-      givenName
-      googleId
-      imageUrl
-      name
-    }
-  }
-`;
-//possibly delete after moving module^
 
 const apiId =
   '770694473973-nsm7s39sp1tvm3jpg6d3pk7ln309gvbr.apps.googleusercontent.com';
@@ -61,12 +33,14 @@ const Landing = () => {
         setUserName(response.profileObj.name);
         createUser({
           variables: {
-            email: response.profileObj.email,
-            familyName: response.profileObj.familyName,
-            givenName: response.profileObj.givenName,
-            googleId: response.profileObj.googleId,
-            imageUrl: response.profileObj.imageUrl,
-            name: response.profileObj.name,
+            userDetails: {
+              email: response.profileObj.email,
+              familyName: response.profileObj.familyName,
+              givenName: response.profileObj.givenName,
+              googleId: response.profileObj.googleId,
+              imageUrl: response.profileObj.imageUrl,
+              name: response.profileObj.name,
+            },
           },
         });
         localStorage.setItem('loggedIn', `${loggedIn}`);
