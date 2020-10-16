@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from '../../components/Routes/Routes';
 import Meeting from '../Meeting/Meeting';
-import './App.css';
 import Landing from '../../components/Landing/Landing';
 
 interface props {

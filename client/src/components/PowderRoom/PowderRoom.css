@@ -1,4 +1,4 @@
-.container {
+.pwdrcontainer {
   display: flex;
   flex-direction: row;
   justify-items: center;
@@ -12,13 +12,13 @@
   border: 5px solid gray;
   border-radius: 16px;
 }
-.button {
+.pwdrbutton {
   flex: 1;
   width: 200px;
   height: 60px;
   padding: 10px;
   color: #4b4b4b;
-  font-size: 40px;
+  font-size: 20px;
   background-color: white;
   opacity: 0.3;
   border: 1px solid blue;
