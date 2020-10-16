@@ -2,7 +2,15 @@ import React from 'react';
 import './Meeting.css';
 
 const Meeting = () => {
-  return <div className="mtngcontainer">You are now in a meeting</div>;
+  return (
+    <div className="mtngcontainer">
+      <div>
+        <button></button>
+        <button></button>
+        <button></button>
+      </div>
+    </div>
+  );
 };
 
 export default Meeting;
