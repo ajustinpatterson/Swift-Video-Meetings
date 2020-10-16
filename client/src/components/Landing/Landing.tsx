@@ -6,7 +6,6 @@ import {
   useHistory,
   Link,
 } from 'react-router-dom';
-import { CompareUser } from '../../services/DbService';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
 import './Landing.css';
@@ -29,8 +28,6 @@ const Landing = () => {
       console.log(response);
       if (response) {
         setUserName(response.profileObj.name);
-        const userObj = CompareUser(response.profileObj.name);
-        console.log(userObj);
         localStorage.setItem('loggedIn', `${loggedIn}`);
         setLoggedIn(true);
       }
