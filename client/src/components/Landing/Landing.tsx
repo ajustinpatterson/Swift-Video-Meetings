@@ -17,6 +17,7 @@ const Landing = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userName, setUserName] = useState('');
   const history = useHistory();
+  const active = localStorage.getItem('loggedIn');
 
   const handleClick = () => {
     history.push('/powderroom');
@@ -27,6 +28,7 @@ const Landing = () => {
       console.log(response);
       if (response) {
         setUserName(response.profileObj.name);
+        localStorage.setItem('loggedIn', `${loggedIn}`);
         setLoggedIn(true);
       }
     } catch (err) {
@@ -37,7 +39,7 @@ const Landing = () => {
   return (
     <div className="landing">
       <img src={logo} alt="Logo" />
-      {!loggedIn ? (
+      {!active ? (
         <GoogleLogin
           clientId={apiId}
           render={(renderProps) => (

@@ -1,8 +1,16 @@
 import Peer from 'peerjs';
 import Webcam from 'react-webcam';
 import React, { useState, useEffect, useRef } from 'react';
+<<<<<<< HEAD
 import './App.css';
 // import {uuid} from '../../uuid';
+=======
+import { BrowserRouter } from 'react-router-dom';
+import Routes from '../../components/Routes/Routes';
+import Meeting from '../Meeting/Meeting';
+import Landing from '../../components/Landing/Landing';
+
+>>>>>>> ff9872cda900a8370b7509e0e10beddb9d335bef
 interface props {
   socket: any;
 }
