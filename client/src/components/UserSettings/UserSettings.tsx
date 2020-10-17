@@ -36,11 +36,16 @@ export default function UserSettings (): JSX.Element {
     status: ''
   })
 
-  const handleChange = (event: ChangeEvent) => {
-
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.currentTarget.value;
+    const stateKey = event.target.id;
+    setUser(prevInfo => ({
+      ...prevInfo,
+      [stateKey]: newValue
+    }))
   }
 
-  const handleSubmit = (event: FormEvent, input: String) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     //call mutation function
   }
@@ -48,48 +53,64 @@ export default function UserSettings (): JSX.Element {
   return (
     <div className="user-settings-container">
       <div>
-        Account Settings
+        User Settings
       </div>
 
       <form
         className="form-user-settings"
         onSubmit={handleSubmit}
       >
-        <h4>Image</h4>
+        <label htmlFor="image">Image</label>
         <img src={logo} alt="logo" width="200"/>
 
-        <h4>Name</h4>
+        <label htmlFor="name">Name</label>
         <input
-        placeholder={user.name}
-        name="name"
-        type="text"
-        value={user.name}
+          id="name"
+          placeholder={user.name}
+          name="name"
+          type="text"
+          value={user.name}
+          onChange={handleChange}
         >
         </input>
 
-        <h4>Email</h4>
+        <label htmlFor="email">Email</label>
         <input
-        placeholder='mo@gmail.com'
+          id="email"
+          placeholder={user.email}
+          name="email"
+          type="text"
+          value={user.email}
+          onChange={handleChange}
         >
         </input>
 
-        <h4>Bio</h4>
+        <label htmlFor="bio">Bio</label>
         <input
-        placeholder='From somewhere else'
+          id="bio"
+          placeholder={user.bio}
+          name="bio"
+          type="text"
+          value={user.bio}
+          onChange={handleChange}
         >
         </input>
 
-        <h4>Status</h4>
+        <label htmlFor="status">Status</label>
         <input
-        placeholder='Coding allll day'
+          id="status"
+          placeholder={user.status}
+          name="status"
+          type="text"
+          value={user.status}
+          onChange={handleChange}
         >
         </input>
 
        <button
         type="submit"
-        className="form_submit"
        >
-         Save changes
+         Save Changes
        </button>
 
       </form>
