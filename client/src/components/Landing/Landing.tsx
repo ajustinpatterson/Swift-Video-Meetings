@@ -8,22 +8,27 @@ import {
 } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import logo from '../../assets/swift-logo.png';
+import logo from '../../assets/swift-logo-big.png';
 import { CREATE_USER } from '../../graphql/Client';
-import './Landing.css';
+import './Landing.scss';
 
 const apiId =
   '770694473973-nsm7s39sp1tvm3jpg6d3pk7ln309gvbr.apps.googleusercontent.com';
 
 const Landing = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState<string>('');
   const history = useHistory();
   const active = localStorage.getItem('loggedIn');
   const [createUser, newUser] = useMutation(CREATE_USER);
+  const [roomId, setRoomId] = useState<string>('');
 
   const handleClick = () => {
     history.push('/powderroom');
+  };
+
+  const roomSubmit = (event: any) => {
+    event.preventDefault();
   };
 
   const responseGoogle = async (response: any) => {
@@ -53,29 +58,42 @@ const Landing = () => {
 
   return (
     <div className="landing">
-      <img src={logo} alt="Logo" />
-      {!active ? (
-        <GoogleLogin
-          clientId={apiId}
-          render={(renderProps) => (
-            <button
-              className="button"
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-            >
-              Login
+      <img src={logo} alt="Logo" className="logo" />
+      <div className="hero-stack">
+        <h1>Fast video meetings made simple.</h1>
+        <p>Meet Swift. Fast calls. Simple.</p>
+        {!active ? (
+          <div className="btn-stack">
+            <GoogleLogin
+              clientId={apiId}
+              render={(renderProps) => (
+                <button
+                  className="button"
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                >
+                  Login
+                </button>
+              )}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseGoogle}
+              cookiePolicy={'single_host_origin'}
+            />
+          </div>
+        ) : (
+          <div className="btn-stack">
+            <button className="button" onClick={handleClick}>
+              Start
             </button>
-          )}
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
-      ) : (
-        <button className="button" onClick={handleClick}>
-          Start Meeting
-        </button>
-      )}
+            <form onSubmit={roomSubmit}>
+              <label>
+                <input type="text" name="room" placeholder="Enter Room" />
+              </label>
+            </form>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
