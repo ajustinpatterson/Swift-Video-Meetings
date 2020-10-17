@@ -7,7 +7,6 @@ import { PeerServer } from 'peer';
 
 const app = express();
 
-import { router } from './routes/router';
 import { typeDefs } from './graphql/typeDefs';
 import { resolvers } from './graphql/resolvers';
 
@@ -31,7 +30,6 @@ const expressServer = new Server(app);
 const io = socketio(expressServer);
 
 app.use(cors());
-app.use(router);
 
 import dotenv from 'dotenv';
 dotenv.config();

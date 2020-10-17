@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/Andrea-Dispe/name-to-be-changed#readme",
   "dependencies": {
-    "commitizen": "^4.2.1"
+    "@types/react-modal": "^3.10.6",
+    "commitizen": "^4.2.1",
+    "react-modal": "^3.11.2"
   },
   "devDependencies": {
     "@types/socket.io": "^2.1.11",

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
-import { updateLanguageServiceSourceFile } from 'typescript';
-// import { User }  from './User';
+import logo from '../../assets/swift-logo.png';
 
 export default function UserSettings (): JSX.Element {
 
@@ -17,16 +16,7 @@ export default function UserSettings (): JSX.Element {
     }
   `
 
-  const UPDATE_USER = gql `
-    mutation UpdateUser {
-      updateUser {
-
-      }
-    }
-  `
-
   const {data, loading, error} = useQuery(GET_USERS);
-  const {updateUser} = useMutation(UPDATE_USER);
 
   console.log(data)
 
@@ -38,7 +28,7 @@ export default function UserSettings (): JSX.Element {
     status: string
   }
 
-  const [ user, setUser] = useState<User>({
+  const [ user, setUser ] = useState<User>({
     name: '',
     email: '',
     bio: '',
@@ -46,20 +36,14 @@ export default function UserSettings (): JSX.Element {
     status: ''
   })
 
-  useEffect(() => {
-    setUser({name: data.name})
-  }, []);
+  const handleChange = (event: ChangeEvent) => {
 
-  const setModal = () => {
+  }
 
-  };
-
-  const onSubmit = (input) => {
-    setModal(false);
-    updateUser({
-
-    })
-  };
+  const handleSubmit = (event: FormEvent, input: String) => {
+    event.preventDefault();
+    //call mutation function
+  }
 
   return (
     <div className="user-settings-container">
@@ -67,36 +51,48 @@ export default function UserSettings (): JSX.Element {
         Account Settings
       </div>
 
-      <div className="edit-image">
-        <h3>Image</h3>
-        <h4>{user.image} My mugshot</h4>
-        <button>Edit</button>
-      </div>
+      <form
+        className="form-user-settings"
+        onSubmit={handleSubmit}
+      >
+        <h4>Image</h4>
+        <img src={logo} alt="logo" width="200"/>
 
-      <div className="edit-name">
-        <h3>Name</h3>
-        <h4>{user.name} Mo</h4>
-        <button>Edit</button>
-      </div>
+        <h4>Name</h4>
+        <input
+        placeholder={user.name}
+        name="name"
+        type="text"
+        value={user.name}
+        >
+        </input>
 
-      <div className="edit-email">
-        <h3>Email</h3>
-        <h4>{user.email} mo@gmail.com</h4>
-        <button>Edit</button>
-      </div>
+        <h4>Email</h4>
+        <input
+        placeholder='mo@gmail.com'
+        >
+        </input>
 
-      <div className="edit-bio">
-        <h3>Bio</h3>
-        <h4>{user.bio} Just a small town girl living in a lonely world</h4>
-        <button>Edit</button>
-      </div>
+        <h4>Bio</h4>
+        <input
+        placeholder='From somewhere else'
+        >
+        </input>
 
-      <div className="edit-status">
-        <h3>Status</h3>
-        <h4>{user.status} Swifting so hard</h4>
-        <button>Edit</button>
-      </div>
+        <h4>Status</h4>
+        <input
+        placeholder='Coding allll day'
+        >
+        </input>
 
+       <button
+        type="submit"
+        className="form_submit"
+       >
+         Save changes
+       </button>
+
+      </form>
     </div>
   )
 };
