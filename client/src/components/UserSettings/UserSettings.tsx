@@ -1,6 +1,7 @@
 import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
 import logo from '../../assets/swift-logo.png';
+import { UseGoogleLoginResponse } from 'react-google-login';
 
 export default function UserSettings (): JSX.Element {
 
@@ -75,12 +76,9 @@ export default function UserSettings (): JSX.Element {
     })
     }
 
-    // useEffect(() => {
-    //   console.log(data)
-    //   if (data?.getUsers) {
-    //     console.log(data.getUsers[0])
-    //   }
-    // }, [data])
+    useEffect(() => {
+
+    }, [data]);
 
   return (
     <div className="user-settings-container">

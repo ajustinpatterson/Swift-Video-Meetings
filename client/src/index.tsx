@@ -18,7 +18,7 @@ ReactDOM.render(
         {(socket: any) => (
           // <PowderRoom />
           // <App socket={socket} />
-          <UserSettings />
+          <UserProfile />
         )}
     </SocketContext.Consumer>
   </ApolloProvider>,
