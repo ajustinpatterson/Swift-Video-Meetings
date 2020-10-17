@@ -28,6 +28,7 @@ export default function UserProfile (): JSX.Element {
     query {
       getUsers {
         email
+        givenName
         imageUrl
         name
         bio
@@ -41,6 +42,10 @@ export default function UserProfile (): JSX.Element {
 
   return (
     <div>
+
+      <div>
+        Hello {data?.getUsers[0]?.givenName}
+      </div>
 
       <div>
         <div>
@@ -57,11 +62,17 @@ export default function UserProfile (): JSX.Element {
 
         <div>
         {data?.getUsers[0]?.bio}
+        Learning to code
         </div>
 
         <div>
           {data?.getUsers[0]?.status}
+          Swifting all day
         </div>
+
+        <button>
+          Edit profile
+        </button>
 
       </div>
 

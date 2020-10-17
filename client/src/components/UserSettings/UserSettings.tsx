@@ -2,6 +2,7 @@ import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
 import logo from '../../assets/swift-logo.png';
 import { UseGoogleLoginResponse } from 'react-google-login';
+import { setConstantValue } from 'typescript';
 
 export default function UserSettings (): JSX.Element {
 
@@ -54,6 +55,17 @@ export default function UserSettings (): JSX.Element {
     status: ''
   })
 
+  useEffect(() => {
+    setUser({
+      _id: data?.getUsers[0]?._id,
+      name: data?.getUsers[0]?.name,
+      email: data?.getUsers[0]?.email,
+      bio: data?.getUsers[0]?.bio,
+      image: data?.getUsers[0]?.imageUrl,
+      status: data?.getUsers[0]?.status
+    })
+  }, [data]);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.currentTarget.value;
     const stateKey = event.target.name;
@@ -73,12 +85,9 @@ export default function UserSettings (): JSX.Element {
         image: user.image,
         status: user.status
       }
-    })
-    }
+    });
+  };
 
-    useEffect(() => {
-
-    }, [data]);
 
   return (
     <div className="user-settings-container">
@@ -97,10 +106,10 @@ export default function UserSettings (): JSX.Element {
         <label htmlFor="name">Name</label>
         <input
           id="name"
-          placeholder={data?.getUsers[0]?.name}
+          placeholder={user.name}
           name="name"
           type="text"
-          value={data?.getUsers[0]?.name}
+          value={user.name}
           onChange={handleChange}
         >
         </input>
