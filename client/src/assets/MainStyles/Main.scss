@@ -10,3 +10,29 @@
   @include vidBtn();
   background-color: #cfcfcf;
 }
+
+@mixin respVidBtn {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  border: 1px solid gray;
+  border-radius: 100px;
+}
+
+@mixin respVidBtnHov {
+  @include respVidBtn();
+  background-color: #cfcfcf;
+}
+
+@mixin miniVidBtn {
+  width: 20pxpx;
+  height: 20px;
+  margin: 10px;
+  border: 1px solid gray;
+  border-radius: 20px;
+}
+
+@mixin miniVidBtnHov {
+  @include respVidBtn();
+  background-color: #cfcfcf;
+}

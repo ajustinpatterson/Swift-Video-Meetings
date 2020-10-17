@@ -1,35 +1,132 @@
 @use '../../assets/MainStyles/Main.scss' as Main;
 
-.pwdrcontainer {
-  display: flex;
-  flex-direction: row;
-  justify-items: center;
-  align-items: center;
-  background-color: gray;
-  color: brown;
-  text-align: center;
-  font-size: 60px;
-  width: 99.2vw;
-  height: 98.5vh;
-  border: 5px solid gray;
+$break-small: 400px;
+$break-med: 700px;
+$break-large: 1200px;
+
+@media screen and (max-width: $break-med) {
+  .pwdrcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    background-color: gray;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .pwdrnavbar {
+    align-self: flex-end;
+    width: 100vw;
+    background-color: #ffffff00;
+  }
+  .play-on {
+    @include Main.miniVidBtn();
+  }
+  .play-on:hover {
+    @include Main.miniVidBtn();
+    background-color: #81cf92;
+  }
+  .exit-on {
+    @include Main.miniVidBtn();
+  }
+  .exit-on:hover {
+    @include Main.miniVidBtn();
+    background-color: #f37070;
+  }
+  .btn-on {
+    @include Main.miniVidBtn();
+  }
+  .btn-on:hover {
+    @include Main.miniVidBtnHov();
+  }
+  .btn-off {
+    @include Main.miniVidBtn();
+  }
+  .btn-off:hover {
+    @include Main.miniVidBtnHov();
+  }
 }
-.pwdrnavbar {
-  align-self: flex-end;
-  height: 50 px;
-  width: 100vw;
-  background-color: #ffffff00;
+
+@media screen and (max-width: $break-large) {
+  .pwdrcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    background-color: gray;
+    text-align: center;
+    font-size: 60px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .pwdrnavbar {
+    align-self: flex-end;
+    width: 100vw;
+    background-color: #ffffff00;
+  }
+  .play-on {
+    @include Main.respVidBtn();
+  }
+  .play-on:hover {
+    @include Main.respVidBtn();
+    background-color: #81cf92;
+  }
+  .exit-on {
+    @include Main.respVidBtn();
+  }
+  .exit-on:hover {
+    @include Main.respVidBtn();
+    background-color: #f37070;
+  }
+  .btn-on {
+    @include Main.respVidBtn();
+  }
+  .btn-on:hover {
+    @include Main.respVidBtnHov();
+  }
+  .btn-off {
+    @include Main.respVidBtn();
+  }
+  .btn-off:hover {
+    @include Main.respVidBtnHov();
+  }
 }
-.play-on {
-  @include Main.vidBtn();
-}
-.play-on:hover {
-  @include Main.vidBtn();
-  background-color: #81cf92;
-}
-.exit-on {
-  @include Main.vidBtn();
-}
-.exit-on:hover {
-  @include Main.vidBtn();
-  background-color: #f37070;
+
+@media screen and (min-width: $break-large) {
+  .pwdrcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    background-color: gray;
+    color: brown;
+    text-align: center;
+    font-size: 60px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  .pwdrnavbar {
+    align-self: flex-end;
+    height: 50 px;
+    width: 100vw;
+    background-color: #ffffff00;
+  }
+  .play-on {
+    @include Main.vidBtn();
+  }
+  .play-on:hover {
+    @include Main.vidBtn();
+    background-color: #81cf92;
+  }
+  .exit-on {
+    @include Main.vidBtn();
+  }
+  .exit-on:hover {
+    @include Main.vidBtn();
+    background-color: #f37070;
+  }
 }
