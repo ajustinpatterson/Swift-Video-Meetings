@@ -3,7 +3,8 @@ import { UUIDResolver, EmailAddressResolver } from 'graphql-scalars';
 import {
   MutationCreateUser,
   MutationDeleteUser,
-  MutationUpdateUser
+  MutationUpdateUser,
+  QueryGetUserById
 } from './types';
 
 // import jwt from 'jsonwebtoken';
@@ -18,6 +19,11 @@ const resolvers = {
     async getUsers () {
       const users = await db.User.findAll();
       return users;
+    },
+    async getUserById (_: any, {_id}: QueryGetUserById) {
+      const user = await db.User.findOne({ where: {_id}});
+      if (!user) throw new Error('User not found. Please check the id.')
+      return user;
     }
   },
   Mutation: {

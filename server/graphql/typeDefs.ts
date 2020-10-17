@@ -52,6 +52,7 @@ const typeDefs = gql `
 
   type Query {
     getUsers: [User]!
+    getUserById(_id: UUID!): User!
   }
 
   type Mutation {

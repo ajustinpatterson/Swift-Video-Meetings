@@ -35,7 +35,7 @@ const CREATE_USER = gql`
 
 
 
-const Landing = () => {
+const Landing = (): JSX.Element => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const [userName, setUserName] = useState<String>('');
   const [createUser, newUser] = useMutation(CREATE_USER);

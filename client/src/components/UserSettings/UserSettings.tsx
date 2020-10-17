@@ -17,26 +17,26 @@ export default function UserSettings (): JSX.Element {
   `
 
   const UPDATE_USER = gql`
-  mutation UpdateUser(
-    $userDetails: UpdateUserInput!
-  ) {
-    updateUser(
-      userDetails: $userDetails
+    mutation UpdateUser(
+      $userDetails: UpdateUserInput!
     ) {
-      name
-      email
-      bio
-      imageUrl
-      status
+      updateUser(
+        userDetails: $userDetails
+      ) {
+        name
+        email
+        bio
+        imageUrl
+        status
+      }
     }
-  }
-`;
+  `;
 
-  const {data, loading, error} = useQuery(GET_USERS);
-
-  console.log(data)
+  const { data, loading, error }  = useQuery(GET_USERS);
+  const [ updateUser ]  = useMutation<{updateUser: User}>(UPDATE_USER);
 
   interface User {
+    _id: string
     name: string
     email: string
     bio: string
@@ -45,6 +45,7 @@ export default function UserSettings (): JSX.Element {
   }
 
   const [ user, setUser ] = useState<User>({
+    _id: '',
     name: '',
     email: '',
     bio: '',
@@ -63,11 +64,27 @@ export default function UserSettings (): JSX.Element {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    //call mutation function
-  }
+    updateUser({
+      variables: {
+        name: user.name,
+        email: user.email,
+        bio: user.bio,
+        image: user.image,
+        status: user.status
+      }
+    })
+    }
+
+    // useEffect(() => {
+    //   console.log(data)
+    //   if (data?.getUsers) {
+    //     console.log(data.getUsers[0])
+    //   }
+    // }, [data])
 
   return (
     <div className="user-settings-container">
+
       <div>
         User Settings
       </div>
@@ -82,10 +99,10 @@ export default function UserSettings (): JSX.Element {
         <label htmlFor="name">Name</label>
         <input
           id="name"
-          placeholder={user.name}
+          placeholder={data?.getUsers[0]?.name}
           name="name"
           type="text"
-          value={user.name}
+          value={data?.getUsers[0]?.name}
           onChange={handleChange}
         >
         </input>

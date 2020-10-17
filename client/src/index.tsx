@@ -8,6 +8,8 @@ import userClient from './graphql/Client';
 // import Landing from './components/Landing/Landing';
 import { SocketContext } from "./socket-context";
 import UserSettings from './components/UserSettings/UserSettings';
+import UserProfile from './components/UserProfile/UserProfile';
+
 // import PowderRoom from './components/PowderRoom/PowderRoom'
 
 ReactDOM.render(

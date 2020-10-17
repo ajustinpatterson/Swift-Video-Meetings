@@ -28,3 +28,7 @@ export interface MutationDeleteUser {
 export interface MutationUpdateUser {
   userDetails: UpdateUserInput
 }
+
+export interface QueryGetUserById {
+  _id: string
+}
