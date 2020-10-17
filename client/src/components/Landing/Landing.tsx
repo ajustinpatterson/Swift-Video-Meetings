@@ -29,6 +29,13 @@ const Landing = () => {
 
   const roomSubmit = (event: any) => {
     event.preventDefault();
+
+    setRoomId('');
+    history.push('/powderroom');
+  };
+
+  const handleChange = (event: any) => {
+    setRoomId(event.target.value);
   };
 
   const responseGoogle = async (response: any) => {
@@ -62,6 +69,7 @@ const Landing = () => {
       <div className="hero-stack">
         <h1>Fast video meetings made simple.</h1>
         <p>Meet Swift. Fast calls. Simple.</p>
+        <div className="spacer"></div>
         {!active ? (
           <div className="btn-stack">
             <GoogleLogin
@@ -84,11 +92,16 @@ const Landing = () => {
         ) : (
           <div className="btn-stack">
             <button className="button" onClick={handleClick}>
-              Start
+              New
             </button>
-            <form onSubmit={roomSubmit}>
+            <form autoComplete="off" onSubmit={roomSubmit}>
               <label>
-                <input type="text" name="room" placeholder="Enter Room" />
+                <input
+                  type="text"
+                  value={roomId}
+                  onChange={handleChange}
+                  placeholder="Enter Room"
+                />
               </label>
             </form>
           </div>
