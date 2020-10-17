@@ -16,6 +16,22 @@ export default function UserSettings (): JSX.Element {
     }
   `
 
+  const UPDATE_USER = gql`
+  mutation UpdateUser(
+    $userDetails: UpdateUserInput!
+  ) {
+    updateUser(
+      userDetails: $userDetails
+    ) {
+      name
+      email
+      bio
+      imageUrl
+      status
+    }
+  }
+`;
+
   const {data, loading, error} = useQuery(GET_USERS);
 
   console.log(data)
@@ -38,9 +54,9 @@ export default function UserSettings (): JSX.Element {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const newValue = event.currentTarget.value;
-    const stateKey = event.target.id;
-    setUser(prevInfo => ({
-      ...prevInfo,
+    const stateKey = event.target.name;
+    setUser(prevState => ({
+      ...prevState,
       [stateKey]: newValue
     }))
   }

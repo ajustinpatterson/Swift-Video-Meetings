@@ -43,13 +43,10 @@ const typeDefs = gql `
 
   input UpdateUserInput {
     _id: UUID!
-    email: EmailAddress
-    familyName: String
-    givenName: String
-    googleId: String
-    imageUrl: String
     name: String
+    email: EmailAddress
     bio: String
+    imageUrl: String
     status: String
   }
 
