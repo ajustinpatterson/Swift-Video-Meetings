@@ -1,14 +1,12 @@
 import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
-import logo from '../../assets/swift-logo.png';
-import { UseGoogleLoginResponse } from 'react-google-login';
-import { setConstantValue } from 'typescript';
 
 export default function UserSettings (): JSX.Element {
 
   const GET_USERS = gql`
     query {
       getUsers {
+        _id
         email
         imageUrl
         name
@@ -25,6 +23,7 @@ export default function UserSettings (): JSX.Element {
       updateUser(
         userDetails: $userDetails
       ) {
+        _id
         name
         email
         bio
@@ -35,7 +34,7 @@ export default function UserSettings (): JSX.Element {
   `;
 
   const { data, loading, error }  = useQuery(GET_USERS);
-  const [ updateUser ]  = useMutation<{updateUser: User}>(UPDATE_USER);
+  const [ updateUserInfo ]  = useMutation<{updateUser: User}>(UPDATE_USER);
 
   interface User {
     _id: string
@@ -44,7 +43,7 @@ export default function UserSettings (): JSX.Element {
     bio: string
     image: string
     status: string
-  }
+  };
 
   const [ user, setUser ] = useState<User>({
     _id: '',
@@ -53,7 +52,7 @@ export default function UserSettings (): JSX.Element {
     bio: '',
     image: '',
     status: ''
-  })
+  });
 
   useEffect(() => {
     setUser({
@@ -72,22 +71,22 @@ export default function UserSettings (): JSX.Element {
     setUser(prevState => ({
       ...prevState,
       [stateKey]: newValue
-    }))
-  }
+    }));
+  };
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    updateUser({
+    updateUserInfo({
       variables: {
+        _id: user._id,
         name: user.name,
         email: user.email,
         bio: user.bio,
-        image: user.image,
+        imageUrl: user.image,
         status: user.status
       }
     });
   };
-
 
   return (
     <div className="user-settings-container">
@@ -100,8 +99,10 @@ export default function UserSettings (): JSX.Element {
         className="form-user-settings"
         onSubmit={handleSubmit}
       >
-        <label htmlFor="image">Image</label>
-        <img src={logo} alt="logo" width="200"/>
+        <div>
+          <img src={user.image} alt="user_image" width="200"/>
+          <button>Upload new image</button>
+        </div>
 
         <label htmlFor="name">Name</label>
         <input
