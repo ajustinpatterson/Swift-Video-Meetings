@@ -1,13 +1,13 @@
 import React from "react";
 import { useQuery, gql } from '@apollo/client';
 
-const fileQuery = gql `
+export const fileQuery = gql `
     {
       file
     }
   `
 
-export default function Files () {
+export const Files = () => {
 
   const { data, loading, error } = useQuery(fileQuery);
 

@@ -25,7 +25,7 @@ const resolvers = {
       if (!user) throw new Error('User not found. Please check the id.')
       return user;
     },
-    async uploads (_, args) {
+    files () {
 
     }
   },
@@ -57,8 +57,8 @@ const resolvers = {
       return updatedUser[1][0];
     },
     async UploadFile (_, { file }) {
-      const upload = await processUpload(file);
-      await db.User.file.create(upload)
+      const { createReadStream, filename } = await upload;
+
     }
   }
 };

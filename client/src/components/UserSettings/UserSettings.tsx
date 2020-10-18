@@ -1,7 +1,7 @@
 import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
 
-export default function UserSettings (): JSX.Element {
+export const UserSettings = (): JSX.Element => {
 
   const GET_USERS = gql`
     query {
