@@ -56,7 +56,7 @@ const resolvers = {
       if (!updatedUser) throw new Error ('User not updated');
       return updatedUser[1][0];
     },
-    async singleUpload (_, { file }) {
+    async UploadFile (_, { file }) {
       const upload = await processUpload(file);
       await db.User.file.create(upload)
     }
