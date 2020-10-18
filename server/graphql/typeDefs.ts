@@ -67,7 +67,7 @@ const typeDefs = gql `
     createUser(userDetails: CreateUserInput!): NewUser!
     deleteUser(_id: UUID!): User!
     updateUser(userDetails: UpdateUserInput!): User!
-    singleUpload(file: Upload!): File!
+    UploadFile(file: Upload!): File!
   }
 `
 

@@ -25,7 +25,7 @@ const resolvers = {
       if (!user) throw new Error('User not found. Please check the id.')
       return user;
     },
-    async uploads (parent, args) {
+    async uploads (_, args) {
 
     }
   },
