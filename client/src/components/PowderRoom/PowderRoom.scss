@@ -1,10 +1,10 @@
 @use '../../assets/MainStyles/Main.scss' as Main;
 
-$break-small: 400px;
-$break-med: 700px;
+$break-small: 420px;
+$break-med: 850px;
 $break-large: 1200px;
 
-@media screen and (max-width: $break-med) {
+@media screen and (max-width: $break-small) {
   .pwdrcontainer {
     display: flex;
     flex-direction: row;
@@ -49,7 +49,7 @@ $break-large: 1200px;
   }
 }
 
-@media screen and (max-width: $break-large) {
+@media screen and (min-width: $break-small) {
   .pwdrcontainer {
     display: flex;
     flex-direction: row;
@@ -111,7 +111,7 @@ $break-large: 1200px;
   }
   .pwdrnavbar {
     align-self: flex-end;
-    height: 50 px;
+    height: 100 px;
     width: 100vw;
     background-color: #ffffff00;
   }
@@ -128,5 +128,17 @@ $break-large: 1200px;
   .exit-on:hover {
     @include Main.vidBtn();
     background-color: #f37070;
+  }
+  .btn-on {
+    @include Main.vidBtn();
+  }
+  .btn-on:hover {
+    @include Main.vidBtnHov();
+  }
+  .btn-off {
+    @include Main.vidBtn();
+  }
+  .btn-off:hover {
+    @include Main.vidBtnHov();
   }
 }

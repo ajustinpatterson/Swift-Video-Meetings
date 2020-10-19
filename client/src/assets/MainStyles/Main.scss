@@ -1,6 +1,6 @@
 @mixin vidBtn {
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   margin: 10px;
   border: 1px solid gray;
   border-radius: 60px;
@@ -12,8 +12,8 @@
 }
 
 @mixin respVidBtn {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin: 10px;
   border: 1px solid gray;
   border-radius: 100px;
@@ -25,11 +25,11 @@
 }
 
 @mixin miniVidBtn {
-  width: 20pxpx;
-  height: 20px;
+  width: 60px;
+  height: 60px;
   margin: 10px;
   border: 1px solid gray;
-  border-radius: 20px;
+  border-radius: 60px;
 }
 
 @mixin miniVidBtnHov {
