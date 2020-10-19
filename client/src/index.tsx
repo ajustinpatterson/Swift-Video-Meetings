@@ -6,14 +6,12 @@ import { ApolloProvider } from '@apollo/client';
 import * as serviceWorker from './serviceWorker';
 import userClient from './graphql/Client';
 import Landing from './components/Landing/Landing';
-import { SocketContext } from "./socket-context";
+import { SocketContext } from './socket-context';
 
 ReactDOM.render(
   <ApolloProvider client={userClient}>
     <SocketContext.Consumer>
-        {(socket: any) => (
-          <App socket={socket} />
-        )}
+      {(socket: any) => <App socket={socket} />}
     </SocketContext.Consumer>
   </ApolloProvider>,
   document.getElementById('root'),
@@ -22,4 +20,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();
