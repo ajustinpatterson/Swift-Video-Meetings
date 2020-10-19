@@ -4,13 +4,15 @@ import socketio from 'socket.io';
 import { Server } from 'http';
 import cors from 'cors';
 import { PeerServer } from 'peer';
+import dotenv from "dotenv";
+dotenv.config();
 
 const app = express();
 
 import { typeDefs } from './graphql/typeDefs';
 import { resolvers } from './graphql/resolvers';
 
-import { db } from './model/db';
+import { db } from "./model/db";
 
 const server = new ApolloServer({
   typeDefs,
@@ -31,12 +33,9 @@ const io = socketio(expressServer);
 
 app.use(cors());
 
-import dotenv from 'dotenv';
-dotenv.config();
-
 const port: number = Number(process.env.PORT);
 
-(async () =>{
+(async () => {
   try {
     await db.sequelize.sync(); //{force: true} if columns are added
     console.log('DB is connected 👍');

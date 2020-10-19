@@ -3,6 +3,12 @@ db:
   ports:
     - "5432:5432"
   environment:
+<<<<<<< HEAD
     - POSTGRES_USER=$DB_NAME
     - POSTGRES_PASSWORD=$DB_PASSWORD
     - POSTGRES_DB=$DB_NAME
+=======
+    - POSTGRES_USER=$DB_USERNAME
+    - POSTGRES_PASSWORD=$DB_PASSWORD
+    - POSTGRES_DB=$DB_NAME
+>>>>>>> origin/front-end-ui
