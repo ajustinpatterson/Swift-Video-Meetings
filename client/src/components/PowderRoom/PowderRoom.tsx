@@ -3,20 +3,6 @@ import { useHistory } from 'react-router-dom';
 import './PowderRoom.scss';
 
 const PowderRoom = () => {
-<<<<<<< HEAD
-  // const history = useHistory();
-
-  // const handleClick = () => {
-  //   history.push('/meeting');
-  // };
-
-  return (
-    <div className="pwdrcontainer">
-      🐼 -- Everything is going to turn up aces
-      <div className="pwdrbutton">Mic</div>
-       <div className="button" >
-        Ready
-=======
   const [muted, setMuted] = useState<Boolean>(false);
   const [videoOn, setVideoOn] = useState<Boolean>(true);
   const history = useHistory();
@@ -64,7 +50,6 @@ const PowderRoom = () => {
             <img src={require('../../assets/video-slash.svg')} />
           </button>
         )}
->>>>>>> origin/front-end-ui
       </div>
     </div>
   )

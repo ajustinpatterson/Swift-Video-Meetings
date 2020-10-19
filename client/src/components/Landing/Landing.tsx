@@ -1,41 +1,20 @@
-<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
-import './Landing.css';
+// import './Landing.scss';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../graphql/Mutations';
-=======
-import React, { useEffect, useState } from 'react';
-import {
-  BrowserRouter,
-  Router,
-  Route,
-  useHistory,
-  Link,
-} from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import logo from '../../assets/swift-logo-big.png';
-import { CREATE_USER } from '../../graphql/Client';
-import './Landing.scss';
->>>>>>> origin/front-end-ui
 
 const apiId =
   '770694473973-nsm7s39sp1tvm3jpg6d3pk7ln309gvbr.apps.googleusercontent.com';
 
 const Landing = (): JSX.Element => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-<<<<<<< HEAD
   const [userName, setUserName] = useState<String>('');
   const [createUser, newUser] = useMutation(CREATE_USER);
-=======
-  const [userName, setUserName] = useState<string>('');
->>>>>>> origin/front-end-ui
   const history = useHistory();
   const active = localStorage.getItem('loggedIn');
-  const [createUser, newUser] = useMutation(CREATE_USER);
   const [roomId, setRoomId] = useState<string>('');
 
 
@@ -69,18 +48,10 @@ const Landing = (): JSX.Element => {
               googleId: response.profileObj.googleId,
               imageUrl: response.profileObj.imageUrl,
               name: response.profileObj.name,
-<<<<<<< HEAD
             }
           },
         });
 
-=======
-            },
-          },
-        });
-        localStorage.setItem('loggedIn', `${loggedIn}`);
-        setLoggedIn(true);
->>>>>>> origin/front-end-ui
       }
     } catch (err) {
       console.log(err);
