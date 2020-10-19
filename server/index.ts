@@ -1,9 +1,10 @@
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import socketio from "socket.io";
 import { Server } from "http";
 import cors from "cors";
-
 const app = express();
 
 import { router } from "./routes/router";
@@ -25,9 +26,6 @@ app.use(express.static("public"));
 
 app.use(cors());
 app.use(router);
-
-import dotenv from "dotenv";
-dotenv.config();
 
 const port: number = Number(process.env.PORT);
 
