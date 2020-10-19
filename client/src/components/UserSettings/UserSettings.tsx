@@ -3,6 +3,7 @@ import { useMutation, gql, useQuery } from '@apollo/client';
 
 const UserSettings = (): JSX.Element => {
 
+
   const GET_USERS = gql`
     query {
       getUsers {
@@ -41,7 +42,7 @@ const UserSettings = (): JSX.Element => {
     name: string
     email: string
     bio: string
-    image: string
+    imageUrl: string
     status: string
   };
 
@@ -50,7 +51,7 @@ const UserSettings = (): JSX.Element => {
     name: '',
     email: '',
     bio: '',
-    image: '',
+    imageUrl: '',
     status: ''
   });
 
@@ -60,7 +61,7 @@ const UserSettings = (): JSX.Element => {
       name: data?.getUsers[0]?.name,
       email: data?.getUsers[0]?.email,
       bio: data?.getUsers[0]?.bio,
-      image: data?.getUsers[0]?.imageUrl,
+      imageUrl: data?.getUsers[0]?.imageUrl,
       status: data?.getUsers[0]?.status
     })
   }, [data]);
@@ -82,11 +83,31 @@ const UserSettings = (): JSX.Element => {
         name: user.name,
         email: user.email,
         bio: user.bio,
-        imageUrl: user.image,
+        imageUrl: user.imageUrl,
         status: user.status
       }
     });
   };
+
+  const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    const data = new FormData();
+    data.append('files', files[0]);
+    data.append('upload-preset', 'jfoqugj1');
+    const res = await fetch (
+      'https://api.cloudinary.com/v1_1/dpyiqv7ej/image/upload',
+      {
+        method: 'POST',
+        body: data
+      }
+    )
+    const file = await res.json();
+    const imageURL = event.target.name;
+    setUser(prevState => ({
+      ...prevState,
+      [imageURL]: files
+    }));
+  }
 
   return (
     <div className="user-settings-container">
@@ -100,8 +121,16 @@ const UserSettings = (): JSX.Element => {
         onSubmit={handleSubmit}
       >
         <div>
-          <img src={user.image} alt="user_image" width="200"/>
-          <button>Upload new image</button>
+          <img src={user.imageUrl} alt="user_image" width="300"/>
+        </div>
+        <div>
+          <h2>Upload New Profile Image</h2>
+          <input
+            name="file"
+            type="file"
+            placeholder="Upload a new profile image"
+            onChange={uploadImage}
+          />
         </div>
 
         <label htmlFor="name">Name</label>

@@ -21,9 +21,6 @@ const resolvers = {
       const user = await db.User.findOne({ where: {_id}});
       if (!user) throw new Error('User not found. Please check the id.')
       return user;
-    },
-    files () {
-
     }
   },
   Mutation: {
@@ -52,10 +49,6 @@ const resolvers = {
       const updatedUser = await db.User.update(updatedUserDetails, { where: {_id: userDetails._id}, returning: true});
       if (!updatedUser) throw new Error ('User not updated');
       return updatedUser[1][0];
-    },
-    async uploadFile (_, { file }) {
-      const { createReadStream, filename } = await upload;
-
     }
   }
 };

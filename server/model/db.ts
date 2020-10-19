@@ -12,7 +12,6 @@ const db = {
   sequelize: sequelize,
   Sequelize: Sequelize,
   User: UserFactory(sequelize),
-  File: FileFactory(sequelize)
   //add models here if needed
 }
 

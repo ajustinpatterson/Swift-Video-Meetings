@@ -32,13 +32,6 @@ const typeDefs = gql `
     name: String!
   }
 
-  type File {
-    _id: UUID!
-    filename: String!
-    mimetype: String!
-    path: String!
-  }
-
   input CreateUserInput {
     email: EmailAddress!
     familyName: String!
@@ -60,14 +53,12 @@ const typeDefs = gql `
   type Query {
     getUsers: [User]!
     getUserById(_id: UUID!): User!
-    getFiles: [File!]
   }
 
   type Mutation {
     createUser(userDetails: CreateUserInput!): NewUser!
     deleteUser(_id: UUID!): User!
     updateUser(userDetails: UpdateUserInput!): User!
-    uploadFile(file: Upload!): File
   }
 `
 
