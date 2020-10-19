@@ -1,50 +1,13 @@
 import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import { useMutation, gql, useQuery } from '@apollo/client';
+import { GET_USERS } from '../../graphql/Queries';
+import { UPDATE_USER } from '../../graphql/Mutations';
+import { User } from './User';
 
 const UserSettings = (): JSX.Element => {
 
-
-  const GET_USERS = gql`
-    query {
-      getUsers {
-        _id
-        email
-        imageUrl
-        name
-        bio
-        status
-      }
-    }
-  `
-
-  const UPDATE_USER = gql`
-    mutation UpdateUser(
-      $userDetails: UpdateUserInput!
-    ) {
-      updateUser(
-        userDetails: $userDetails
-      ) {
-        _id
-        name
-        email
-        bio
-        imageUrl
-        status
-      }
-    }
-  `;
-
   const { data, loading, error }  = useQuery(GET_USERS);
   const [ updateUserInfo ]  = useMutation<{updateUser: User}>(UPDATE_USER);
-
-  interface User {
-    _id: string
-    name: string
-    email: string
-    bio: string
-    imageUrl: string
-    status: string
-  };
 
   const [ user, setUser ] = useState<User>({
     _id: '',

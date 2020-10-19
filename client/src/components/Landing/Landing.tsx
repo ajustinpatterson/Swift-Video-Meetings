@@ -1,39 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import {
-  BrowserRouter,
-  Router,
-  Route,
-  useHistory,
-  Link,
-} from 'react-router-dom';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { GoogleLogin } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
 import './Landing.css';
-import { useMutation, gql, useQuery } from '@apollo/client';
-import { stringify } from 'querystring';
-
+import { useMutation } from '@apollo/client';
+import { CREATE_USER } from '../../graphql/Mutations';
 
 const apiId =
   '770694473973-nsm7s39sp1tvm3jpg6d3pk7ln309gvbr.apps.googleusercontent.com';
-
-const CREATE_USER = gql`
-  mutation CreateUser(
-    $userDetails: CreateUserInput!
-  ) {
-    createUser(
-      userDetails: $userDetails
-    ) {
-      email
-      familyName
-      givenName
-      googleId
-      imageUrl
-      name
-    }
-  }
-`;
-
-
 
 const Landing = (): JSX.Element => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);

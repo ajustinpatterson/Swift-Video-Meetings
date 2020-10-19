@@ -1,7 +1,8 @@
 export interface User {
+  _id: string
   name: string
   email: string
   bio: string
-  avatar: string
+  imageUrl: string
   status: string
 }
