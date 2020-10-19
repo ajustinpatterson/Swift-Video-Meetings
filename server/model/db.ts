@@ -1,6 +1,5 @@
 import { Sequelize } from "sequelize";
 import UserFactory from "./user";
-import FileFactory from './file';
 import dotenv from 'dotenv';
 dotenv.config;
 

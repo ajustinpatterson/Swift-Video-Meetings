@@ -1,5 +1,5 @@
 import React, { useEffect, useState, FormEvent, ChangeEvent } from 'react';
-import { useMutation, gql, useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { GET_USERS } from '../../graphql/Queries';
 import { UPDATE_USER } from '../../graphql/Mutations';
 import { User } from './User';
@@ -9,6 +9,7 @@ const UserSettings = (): JSX.Element => {
   const { data, loading, error }  = useQuery(GET_USERS);
   const [ updateUserInfo ]  = useMutation<{updateUser: User}>(UPDATE_USER);
 
+  const [ imageFile, setImageFile ] = useState<null | File>(null);
   const [ user, setUser ] = useState<User>({
     _id: '',
     name: '',
@@ -30,48 +31,51 @@ const UserSettings = (): JSX.Element => {
   }, [data]);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const stateKey = event.currentTarget.name;
     const newValue = event.currentTarget.value;
-    const stateKey = event.target.name;
     setUser(prevState => ({
       ...prevState,
       [stateKey]: newValue
     }));
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    const userDetails: User = {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      bio: user.bio,
+      status: user.status
+    }
+    if (imageFile) {
+      const data = new FormData();
+      data.append('file', imageFile);
+      data.append('upload_preset', 'jfoqugj1');
+      data.append('api_key', 'process.env.NODE_ENV.REACT_APP_CLOUDINARY_API_KEY');
+      const res = await fetch (
+        'https://api.cloudinary.com/v1_1/dpyiqv7ej/image/upload',
+        {
+          method: 'POST',
+          body: data,
+        }
+      );
+      const upload = await res.json();
+      userDetails.imageUrl = upload.url;
+    }
     updateUserInfo({
       variables: {
-        userDetails: {
-          _id: user._id,
-          name: user.name,
-          email: user.email,
-          bio: user.bio,
-          imageUrl: user.imageUrl,
-          status: user.status
-        }
+        userDetails: userDetails,
       }
     });
   };
 
   const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
-    // const files = event.target.files;
-    // const data = new FormData();
-    // data.append('files', files[0]);
-    // data.append('upload-preset', 'jfoqugj1');
-    // const res = await fetch (
-    //   'https://api.cloudinary.com/v1_1/dpyiqv7ej/image/upload',
-    //   {
-    //     method: 'POST',
-    //     body: data
-    //   }
-    // )
-    // const file = await res.json();
-    // setUser(prevState => ({
-    //   ...prevState,
-    //   imageURL: file
-    // }));
-  }
+    const file = event.currentTarget.files;
+    if (file && file[0]) {
+      setImageFile(file[0]);
+    }
+  };
 
   return (
     <div className="user-settings-container">

@@ -1,4 +1,4 @@
-import { Sequelize, ModelDefined, DataTypes, Optional, Model, UUID } from "sequelize";
+import { Sequelize, ModelDefined, DataTypes, Optional } from "sequelize";
 
 export interface UserAttributes {
   _id: string

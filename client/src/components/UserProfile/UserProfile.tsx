@@ -1,10 +1,16 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
 import { GET_USERS } from '../../graphql/Queries';
 
 export default function UserProfile (): JSX.Element {
 
   const { data, loading, error }  = useQuery(GET_USERS);
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push('/usersettings');
+  };
 
   return (
     <div>
@@ -15,7 +21,7 @@ export default function UserProfile (): JSX.Element {
 
       <div>
         <div>
-          <img src={data?.getUsers[0]?.imageUrl} />
+          <img src={data?.getUsers[0]?.imageUrl} width="500"/>
         </div>
 
         <div>
@@ -34,7 +40,7 @@ export default function UserProfile (): JSX.Element {
           {data?.getUsers[0]?.status}
         </div>
 
-        <button>
+        <button onClick={handleClick}>
           Edit profile
         </button>
 

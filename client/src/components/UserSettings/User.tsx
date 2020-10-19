@@ -3,6 +3,6 @@ export interface User {
   name: string
   email: string
   bio: string
-  imageUrl: string
+  imageUrl?: string
   status: string
 }
