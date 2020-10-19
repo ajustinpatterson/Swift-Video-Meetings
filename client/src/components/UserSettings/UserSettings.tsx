@@ -79,34 +79,35 @@ const UserSettings = (): JSX.Element => {
     event.preventDefault();
     updateUserInfo({
       variables: {
-        _id: user._id,
-        name: user.name,
-        email: user.email,
-        bio: user.bio,
-        imageUrl: user.imageUrl,
-        status: user.status
+        userDetails: {
+          _id: user._id,
+          name: user.name,
+          email: user.email,
+          bio: user.bio,
+          imageUrl: user.imageUrl,
+          status: user.status
+        }
       }
     });
   };
 
   const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
-    const data = new FormData();
-    data.append('files', files[0]);
-    data.append('upload-preset', 'jfoqugj1');
-    const res = await fetch (
-      'https://api.cloudinary.com/v1_1/dpyiqv7ej/image/upload',
-      {
-        method: 'POST',
-        body: data
-      }
-    )
-    const file = await res.json();
-    const imageURL = event.target.name;
-    setUser(prevState => ({
-      ...prevState,
-      [imageURL]: files
-    }));
+    // const files = event.target.files;
+    // const data = new FormData();
+    // data.append('files', files[0]);
+    // data.append('upload-preset', 'jfoqugj1');
+    // const res = await fetch (
+    //   'https://api.cloudinary.com/v1_1/dpyiqv7ej/image/upload',
+    //   {
+    //     method: 'POST',
+    //     body: data
+    //   }
+    // )
+    // const file = await res.json();
+    // setUser(prevState => ({
+    //   ...prevState,
+    //   imageURL: file
+    // }));
   }
 
   return (
