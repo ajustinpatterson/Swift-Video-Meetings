@@ -7,9 +7,6 @@ import {
   QueryGetUserById
 } from './types';
 
-// import jwt from 'jsonwebtoken';
-// import bcrypt from 'bcrypt';
-
 const resolvers = {
 
   UUID: UUIDResolver,
@@ -56,7 +53,7 @@ const resolvers = {
       if (!updatedUser) throw new Error ('User not updated');
       return updatedUser[1][0];
     },
-    async UploadFile (_, { file }) {
+    async uploadFile (_, { file }) {
       const { createReadStream, filename } = await upload;
 
     }

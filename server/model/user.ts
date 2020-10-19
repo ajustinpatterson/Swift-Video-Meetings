@@ -10,6 +10,7 @@ export interface UserAttributes {
   name: string
   bio? : string
   status?: string
+  file?: string
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, "_id"| "email" | "familyName" | "givenName" | "googleId" | "imageUrl" | "name"> {}
