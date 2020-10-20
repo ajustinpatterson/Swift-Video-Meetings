@@ -18,7 +18,6 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   async context () {
-    // const jwt = req.headers.authorization;
     return { db };
   }
 });

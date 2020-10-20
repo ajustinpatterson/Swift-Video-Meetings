@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import logo from '../../assets/swift-logo.png';
-// import './Landing.scss';
+import './Landing.scss';
 import { useMutation } from '@apollo/client';
 import { CREATE_USER } from '../../graphql/Mutations';
 
