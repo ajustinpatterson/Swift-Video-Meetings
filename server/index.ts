@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server-express';
 import socketio from 'socket.io';
 import { Server } from 'http';
 import cors from 'cors';
-import { PeerServer } from 'peer';
+import { ExpressPeerServer } from 'peer';
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -24,9 +24,13 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-const peerServer = PeerServer({ port: 4000, path: '/' });
-
 const expressServer = new Server(app);
+
+const peerServer = ExpressPeerServer(expressServer, {
+  path: '/myapp'
+});
+
+app.use('/peerjs', peerServer);
 
 const io = socketio(expressServer);
 

@@ -14,8 +14,13 @@ const resolvers = {
 
   Query: {
     async getUsers () {
-      const users = await db.User.findAll();
-      return users;
+      try{
+        const users = await db.User.findAll();
+        return users;
+
+      } catch (err) {
+        console.log(err)
+      }
     },
     async getUserById (_: any, {_id}: QueryGetUserById) {
       const user = await db.User.findOne({ where: {_id}});
