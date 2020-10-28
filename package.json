@@ -1,8 +1,9 @@
 {
-  "name": "name-to-be-changed",
+  "name": "root-dependencies",
   "version": "1.0.0",
-  "description": "",
+  "description": "dependencies for root only",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +11,6 @@
     "type": "git",
     "url": "git+https://github.com/Andrea-Dispe/name-to-be-changed.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -18,10 +18,19 @@
   },
   "homepage": "https://github.com/Andrea-Dispe/name-to-be-changed#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "nodemon": "^2.0.4",
-    "socket.io": "^2.3.0",
-    "ts-node": "^9.0.0",
-    "typescript": "^4.0.3"
+    "@types/react-modal": "^3.10.6",
+    "commitizen": "^4.2.1",
+    "react-modal": "^3.11.2"
+  },
+  "devDependencies": {
+    "@types/socket.io": "^2.1.11",
+    "cz-conventional-changelog": "^3.3.0",
+    "peerjs": "^1.3.1",
+    "socket.io": "^2.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

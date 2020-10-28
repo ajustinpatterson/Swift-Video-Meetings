@@ -1,0 +1,6 @@
+# external
+.external/
+.env
+.gitignore
+.prettierrc.js
+node_modules
