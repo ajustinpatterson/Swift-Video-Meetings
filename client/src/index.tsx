@@ -7,6 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import userClient from './graphql/Client';
 import { SocketContext } from './socket-context';
 import Landing from '../src/components/Landing/Landing';
+import UserSettings from '../src/components/UserSettings/UserSettings';
 
 ReactDOM.render(
   <ApolloProvider client={userClient}>
