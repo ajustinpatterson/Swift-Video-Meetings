@@ -12,7 +12,7 @@ Swift is a minimal, cross-platform web application for fast and simple video con
 
 1. Clone this repo
 ```bash
-git clone https://github.com/ajustinpatterson/name-to-be-changed
+git clone https://github.com/ajustinpatterson/Swift-Video-Meetings
 ```
 
 2. Run npm install from the root and in the client and server folders

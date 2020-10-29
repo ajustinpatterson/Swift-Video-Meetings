@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Andrea-Dispe/name-to-be-changed.git"
+    "url": "git+https://github.com/ajustinpatterson/Swift-Video-Meetings.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Andrea-Dispe/name-to-be-changed/issues"
+    "url": "https://github.com/ajustinpatterson/Swift-Video-Meetings/issues"
   },
-  "homepage": "https://github.com/Andrea-Dispe/name-to-be-changed#readme",
+  "homepage": "https://github.com/ajustinpatterson/Swift-Video-Meetings#readme",
   "dependencies": {
     "@types/react-modal": "^3.10.6",
     "commitizen": "^4.2.1",

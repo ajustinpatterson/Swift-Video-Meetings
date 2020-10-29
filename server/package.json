@@ -1,5 +1,5 @@
 {
-  "name": "name-to-be-changed",
+  "name": "Swift Video Meetings",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ajustinpatterson/name-to-be-changed.git"
+    "url": "git+https://github.com/ajustinpatterson/Swift-Video-Meetings.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ajustinpatterson/name-to-be-changed/issues"
+    "url": "https://github.com/ajustinpatterson/Swift-Video-Meetings/issues"
   },
-  "homepage": "https://github.com/ajustinpatterson/name-to-be-changed#readme",
+  "homepage": "https://github.com/ajustinpatterson/Swift-Video-Meetings#readme",
   "dependencies": {
     "@types/express": "^4.17.8",
     "@types/node": "^14.11.8",
