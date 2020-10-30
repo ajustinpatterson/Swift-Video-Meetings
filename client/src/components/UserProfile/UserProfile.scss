@@ -3,30 +3,32 @@ $break-small: 410px;
 $break-med: 850px;
 $break-large: 1200px;
 @media screen and (max-width: $break-med) {
-  .container {
-    display: flex;
-    flex-direction: column;
+  // .container {
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+  .top {
+    position: relative;
+    flex: 1;
   }
-  .title {
-    text-align: center;
-    font-size: x-large;
-    margin: 10% 10% 0 10%;
-  }
+  // .title {
+  //   text-align: center;
+  //   font-size: large;
+  //   margin: 10% 10% 10% 10%;
+  // }
   img {
-    width: 75%;
-    margin: 12%;
     border-radius: 300px;
   }
-  .details {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid lightgray;
-    margin: 0 8%;
-    .field {
-      border: none;
-      margin: 2% 5%;
-    }
-  }
+  // .details {
+  //   display: flex;
+  //   flex-direction: column;
+  //   border-top: 1px solid lightgray;
+  //   margin: 0 8%;
+  //   .field {
+  //     border: none;
+  //     margin: 2% 5%;
+  //   }
+  // }
   .btn {
     margin-top: 12%;
     width: 120px;

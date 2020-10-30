@@ -7,18 +7,19 @@ export default function UserProfile(): JSX.Element {
   const { data, loading, error } = useQuery(GET_USERS);
   const history = useHistory();
 
-
-  function handleSettings (){
-    history.push('/userSettings')
+  function handleSettings() {
+    history.push('/userSettings');
   }
-
 
   return (
     <div className="container">
-      <div className="title">Hello, {data?.getUsers[0]?.name}</div>
-      <div className="user-info">
-        <div className="profile-pic">
-          <img src={data?.getUsers[0]?.imageUrl} />
+      <div className="top"></div>
+      <div className="middle">
+        <div className="title">Hello, {data?.getUsers[0]?.name}</div>
+        <div className="user-info">
+          <div className="profile-pic">
+            <img src={data?.getUsers[0]?.imageUrl} />
+          </div>
         </div>
         <div className="details">
           <div>Name: {data?.getUsers[0]?.name}</div>
@@ -28,9 +29,9 @@ export default function UserProfile(): JSX.Element {
           <button className="btn" onClick={handleSettings}>
             Edit profile
           </button>
-
         </div>
       </div>
+      <div className="bottom"></div>
     </div>
   );
 }
