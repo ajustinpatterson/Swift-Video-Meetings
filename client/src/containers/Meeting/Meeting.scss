@@ -1,0 +1,246 @@
+@use '../../assets/MainStyles/Main' as Main;
+
+$break-small: 420px;
+$break-med: 850px;
+$break-large: 1200px;
+
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input { /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select { /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+button:focus {
+  outline: none
+}
+
+.mtngcontainer {
+  text-align: center;
+}
+
+@media screen and (max-width: $break-small) {
+
+
+  .cntrlbar {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-on, .share-on {
+    @include Main.miniVidBtn();
+  }
+
+  .btn-off, .share-off {
+    @include Main.miniVidBtn();
+  }
+  .btn-off:hover,  {
+    background-color: #13b98b;
+  }
+
+  .share-off:hover {
+    background-color: #cfcfcf
+  }
+
+  .phnbtn {
+    @include Main.miniVidBtn();
+  }
+  .phnbtn:hover {
+    background-color: red;
+  }
+
+  .share-on {
+    @include Main.miniVidBtn();
+    background-color: #13b98b;
+  }
+  .share-on:hover {
+    background-color: red;
+    // background-color: #cfcfcf;
+  }
+  .share-off {
+    @include Main.miniVidBtn();
+  }
+  // .share-off:hover {
+  //   background-color: gray;
+  // }
+}
+
+@media screen and (min-width: $break-small) {
+
+  .cntrlbar {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-on {
+    @include Main.respVidBtn();
+  }
+
+  .btn-off {
+    @include Main.respVidBtn();
+  }
+  .btn-off:hover,  {
+    background-color: #13b98b;
+  }
+
+  .share-off:hover {
+    background-color: #cfcfcf
+  }
+  .phnbtn {
+    @include Main.respVidBtn();
+  }
+  .phnbtn:hover {
+    background-color: red;
+  }
+
+  .share-on {
+    @include Main.respVidBtn();
+    background-color: #13b98b;
+  }
+  .share-on:hover {
+    background-color: #cfcfcf;
+  }
+  .share-off {
+    @include Main.respVidBtn();
+  }
+  // .share-off:hover {
+  //   background-color: gray;
+  // }
+}
+
+@media screen and (min-width: $break-large) {
+
+  .cntrlbar {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+  }
+
+  .btn-on {
+    @include Main.vidBtn();
+  }
+
+  .share-off:hover {
+    background-color: #cfcfcf
+  }
+  .btn-off {
+    @include Main.vidBtn();
+  }
+  .btn-off:hover {
+    background-color: #cfcfcf;
+  }
+  .phnbtn {
+    @include Main.vidBtn();
+  }
+  .phnbtn:hover {
+    background-color: red;
+  }
+
+  .share-on {
+    @include Main.vidBtn();
+    background-color: #13b98b;
+  }
+  // .share-on:hover {
+  //   background-color: #cfcfcf;
+  // }
+  .share-off {
+    @include Main.vidBtn();
+  }
+  // .share-off:hover {
+  //   background-color: gray;
+  // }
+}
+
+html {
+  height: 100vh;
+}
+
+video {
+  box-shadow: 4px 4px 7px 0px rgba(0, 0, 0, 0.7)
+}
+
+
+.my-video-container, .others-video-container {
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+}
+.container {
+  margin-bottom: 50px;
+}
+.container video {
+  max-width: 640px;
+  max-height: 360px;
+
+}
+
+// .container video {
+//   // max-width: 480px;
+//   // max-height: 270px;
+//   // min-width: 320px;
+//   // min-height: 180px;
+// }
+
+.bird-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+img.bird-middle {
+  width: 15%;
+  margin: 47px 0;
+  border-radius: 0px;
+}
+
+.set {
+  font-size: 59px;
+  color: black;
+  opacity: 0.5;
+}
