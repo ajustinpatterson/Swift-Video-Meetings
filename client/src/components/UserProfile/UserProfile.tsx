@@ -15,14 +15,24 @@ export default function UserProfile(): JSX.Element {
 
   return (
     <div className="container">
-      <div className="title">Hello, {data?.getUsers[0]?.name}</div>
+
+      <div className="card">
+        <div className="main">
+
+        </div>
+      </div>
+
+      <div className="content"></div>
+
+
+      <div className="title">Hello, {data?.getUsers[0]?.givenName}</div>
       <div className="user-info">
         <div className="profile-pic">
           <img src={data?.getUsers[0]?.imageUrl} />
         </div>
         <div className="details">
-          <div>Name: {data?.getUsers[0]?.name}</div>
-          <div>Email: {data?.getUsers[0]?.email}</div>
+          <div>{data?.getUsers[0]?.name}</div>
+          <div>{data?.getUsers[0]?.email}</div>
           <div>{data?.getUsers[0]?.bio}</div>
           <div>{data?.getUsers[0]?.status}</div>
           <button className="btn" onClick={handleSettings}>

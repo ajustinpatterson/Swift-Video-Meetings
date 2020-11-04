@@ -69,6 +69,7 @@ The Swift server is hosted on Heroku.
 * [Sequelize ORM](https://sequelize.org/)
 * [Docker](https://www.docker.com/) - Container management
 * [Heroku](https://www.heroku.com/) - Server deployment
+* [Cloudinary](https://cloudinary.com/) - Image management
 * Powered by caffeine (and sometimes 🍷 🍻)
 
 ## Made by
