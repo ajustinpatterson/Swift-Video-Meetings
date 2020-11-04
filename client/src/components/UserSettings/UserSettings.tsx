@@ -4,6 +4,7 @@ import { GET_USERS } from '../../graphql/Queries';
 import { UPDATE_USER } from '../../graphql/Mutations';
 import { User } from './User';
 import './UserSettings.scss';
+
 const UserSettings = (): JSX.Element => {
   const { data, loading, error } = useQuery(GET_USERS);
   const [updateUserInfo] = useMutation<{ updateUser: User }>(UPDATE_USER);
@@ -16,6 +17,7 @@ const UserSettings = (): JSX.Element => {
     imageUrl: '',
     status: '',
   });
+
   useEffect(() => {
     setUser({
       _id: data?.getUsers[0]?._id,
@@ -26,6 +28,7 @@ const UserSettings = (): JSX.Element => {
       status: data?.getUsers[0]?.status,
     });
   }, [data]);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const stateKey = event.currentTarget.name;
     const newValue = event.currentTarget.value;
@@ -34,6 +37,7 @@ const UserSettings = (): JSX.Element => {
       [stateKey]: newValue,
     }));
   };
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     const userDetails: User = {
@@ -67,77 +71,109 @@ const UserSettings = (): JSX.Element => {
       },
     });
   };
+
   const uploadImage = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.currentTarget.files;
     if (file && file[0]) {
       setImageFile(file[0]);
     }
   };
+
   return (
-    <div className="user-settings-container">
-      <form className="form-user-settings" onSubmit={handleSubmit}>
-        <div className="photo-section">
-          <div className="profile-photo">
-            <img src={user.imageUrl} alt="user_image" />
+    <div className="container">
+      <div className="user-settings-content">
+
+        <form className="form-user-settings" onSubmit={handleSubmit}>
+          <img src={user.imageUrl} alt="user_image" />
+          <h3>Upload New Profile Image</h3>
+          <input
+            name="file"
+            type="file"
+            placeholder="Upload a new profile image"
+            onChange={uploadImage}
+          />
+
+          <div className="user-settings-name">
+              <div className="label-name">
+                <label htmlFor="name">Name</label>
+              </div>
+              <div className="name-input">
+                <input
+                  className="field"
+                  id="name"
+                  placeholder={user.name}
+                  name="name"
+                  type="text"
+                  value={user.name}
+                  onChange={handleChange}
+                >
+                </input>
+              </div>
+            </div>
+
+            <div className="user-settings-email">
+              <div className="label-email">
+                <label htmlFor="email">Email</label>
+              </div>
+              <div className="email-input">
+                <input
+                  className="field"
+                  id="email"
+                  placeholder={user.email}
+                  name="email"
+                  type="text"
+                  value={user.email}
+                  onChange={handleChange}
+                >
+                </input>
+            </div>
+
+            <div className="user-settings-bio">
+              <div className="label-bio">
+                <label htmlFor="bio">Bio</label>
+              </div>
+              <div className="bio-input">
+                <input
+                  className="field"
+                  id="bio"
+                  placeholder={user.bio}
+                  name="bio"
+                  type="text"
+                  value={user.bio}
+                  onChange={handleChange}
+                ></input>
+              </div>
           </div>
-          <div className="photo-upload">
-            <h2>Upload New Profile Image</h2>
-            <input
-              name="file"
-              type="file"
-              placeholder="Upload a new profile image"
-              onChange={uploadImage}
-            />
+
+          <div className="user-settings-status">
+            <div className="label-status">
+              <label htmlFor="status">Status</label>
+            </div>
+            <div className="status-input">
+              <input
+                className="field"
+                id="status"
+                placeholder={user.status}
+                name="status"
+                type="text"
+                value={user.status}
+                onChange={handleChange}
+              ></input>
+            </div>
           </div>
-        </div>
-        <div className="settings-cntnr">
-          <label htmlFor="name">Name</label>
-          <input
-            className="field"
-            id="name"
-            placeholder={user.name}
-            name="name"
-            type="text"
-            value={user.name}
-            onChange={handleChange}
-          ></input>
-          <label htmlFor="email">Email</label>
-          <input
-            className="field"
-            id="email"
-            placeholder={user.email}
-            name="email"
-            type="text"
-            value={user.email}
-            onChange={handleChange}
-          ></input>
-          <label htmlFor="bio">Bio</label>
-          <input
-            className="field"
-            id="bio"
-            placeholder={user.bio}
-            name="bio"
-            type="text"
-            value={user.bio}
-            onChange={handleChange}
-          ></input>
-          <label htmlFor="status">Status</label>
-          <input
-            className="field"
-            id="status"
-            placeholder={user.status}
-            name="status"
-            type="text"
-            value={user.status}
-            onChange={handleChange}
-          ></input>
+
           <button className="btn" type="submit">
             Save Changes
           </button>
-        </div>
-      </form>
+
+          </div>
+        </form>
+      </div>
     </div>
+
+
   );
 };
+
 export default UserSettings;
 

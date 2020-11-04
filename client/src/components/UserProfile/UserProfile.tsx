@@ -16,8 +16,8 @@ export default function UserProfile(): JSX.Element {
   return (
     <div className="container">
 
-      <div className="card">
-        <div className="main">
+      <div className="upper-container">
+        <div className="upper-main">
           {/* <div className="greeting">
             Hello, {data?.getUsers[0]?.givenName}
           </div> */}
@@ -27,8 +27,8 @@ export default function UserProfile(): JSX.Element {
         </div>
       </div>
 
-      <div className="content">
-        <div className="main">
+      <div className="lower-container">
+        <div className="lower-main">
           <div>{data?.getUsers[0]?.status}</div>
           <div>{data?.getUsers[0]?.email}</div>
           <div>{data?.getUsers[0]?.bio}</div>
