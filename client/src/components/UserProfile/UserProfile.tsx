@@ -18,9 +18,9 @@ export default function UserProfile(): JSX.Element {
 
       <div className="card">
         <div className="main">
-          <div className="greeting">
+          {/* <div className="greeting">
             Hello, {data?.getUsers[0]?.givenName}
-          </div>
+          </div> */}
           <div className="profile-pic">
             <img src={data?.getUsers[0]?.imageUrl} />
           </div>
