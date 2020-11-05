@@ -39,6 +39,14 @@ $break-large: 1200px;
   //   @include Main.text-field();
   //   height: 25px;
   // }
+
+  svg {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+  }
 }
 @media screen and (min-width: $break-large) {
   // form {

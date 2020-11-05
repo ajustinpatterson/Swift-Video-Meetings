@@ -85,7 +85,7 @@ const UserSettings = (): JSX.Element => {
 
         <form className="form-user-settings" onSubmit={handleSubmit}>
           <img src={user.imageUrl} alt="user_image" />
-          <h3>Upload New Profile Image</h3>
+          <h3 className="upload-img">Upload New Profile Image</h3>
           <input
             name="file"
             type="file"
@@ -94,39 +94,40 @@ const UserSettings = (): JSX.Element => {
           />
 
           <div className="user-settings-name">
-              <div className="label-name">
-                <label htmlFor="name">Name</label>
-              </div>
-              <div className="name-input">
-                <input
-                  className="field"
-                  id="name"
-                  placeholder={user.name}
-                  name="name"
-                  type="text"
-                  value={user.name}
-                  onChange={handleChange}
-                >
-                </input>
-              </div>
+            <div className="label-name">
+              <label htmlFor="name">Name</label>
             </div>
+            <div className="name-input">
+              <input
+                className="field"
+                id="name"
+                placeholder={user.name}
+                name="name"
+                type="text"
+                value={user.name}
+                onChange={handleChange}
+              >
+              </input>
+            </div>
+          </div>
 
-            <div className="user-settings-email">
-              <div className="label-email">
-                <label htmlFor="email">Email</label>
-              </div>
-              <div className="email-input">
-                <input
-                  className="field"
-                  id="email"
-                  placeholder={user.email}
-                  name="email"
-                  type="text"
-                  value={user.email}
-                  onChange={handleChange}
-                >
-                </input>
+          <div className="user-settings-email">
+            <div className="label-email">
+              <label htmlFor="email">Email</label>
             </div>
+            <div className="email-input">
+              <input
+                className="field"
+                id="email"
+                placeholder={user.email}
+                name="email"
+                type="text"
+                value={user.email}
+                onChange={handleChange}
+              >
+              </input>
+            </div>
+          </div>
 
             <div className="user-settings-bio">
               <div className="label-bio">
@@ -162,11 +163,11 @@ const UserSettings = (): JSX.Element => {
             </div>
           </div>
 
+
           <button className="btn" type="submit">
             Save Changes
           </button>
 
-          </div>
         </form>
       </div>
     </div>
