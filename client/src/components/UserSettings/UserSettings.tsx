@@ -173,17 +173,14 @@ const UserSettings = (): JSX.Element => {
               ></input>
             </div>
           </div>
-
-
           <button className="btn" type="submit">
             Save Changes
           </button>
-
         </form>
 
         <button className="btn" onClick={backToProfile}>
-            Back to profile
-          </button>
+          Back to profile
+        </button>
 
       </div>
     </div>
