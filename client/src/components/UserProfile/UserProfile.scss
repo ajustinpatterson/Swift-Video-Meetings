@@ -95,7 +95,7 @@ $break-large: 1200px;
 @media screen and (max-width: $break-med) {
   .row {
     flex-direction: column-reverse;
-    margin: 100px 0;
+    margin: 50px 0;
   }
   .column-1 {
     flex-basis: 100%;
@@ -106,7 +106,8 @@ $break-large: 1200px;
     margin-bottom: 50px;
   }
   .color-box {
-    transform: translateX(75px);
+    width: 500px;
+    transform: translateX(125px);
   }
   .column-1 .greeting {
     font-size: 35px;
@@ -131,6 +132,5 @@ $break-large: 1200px;
 }
 @media screen and (min-width: $break-large) {
 
-
-
 }
+
