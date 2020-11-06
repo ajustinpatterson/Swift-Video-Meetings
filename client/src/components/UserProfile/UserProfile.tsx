@@ -19,7 +19,7 @@ export default function UserProfile(): JSX.Element {
 
       <div className="row">
         <div className="column-1">
-          <div className="greeting">Hello, {data?.getUsers[0]?.givenName}</div>
+          <div className="greeting">Hello, {data?.getUsers[0]?.name}</div>
           <div className="name">{data?.getUsers[0]?.name}</div>
           <div className="status">{data?.getUsers[0]?.status}</div>
           <div className="email">{data?.getUsers[0]?.email}</div>

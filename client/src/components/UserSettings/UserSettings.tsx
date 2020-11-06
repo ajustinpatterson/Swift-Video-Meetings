@@ -4,11 +4,15 @@ import { GET_USERS } from '../../graphql/Queries';
 import { UPDATE_USER } from '../../graphql/Mutations';
 import { User } from './User';
 import './UserSettings.scss';
+import { useHistory } from 'react-router-dom';
 
 const UserSettings = (): JSX.Element => {
   const { data, loading, error } = useQuery(GET_USERS);
+
   const [updateUserInfo] = useMutation<{ updateUser: User }>(UPDATE_USER);
+
   const [imageFile, setImageFile] = useState<null | File>(null);
+
   const [user, setUser] = useState<User>({
     _id: '',
     name: '',
@@ -17,6 +21,8 @@ const UserSettings = (): JSX.Element => {
     imageUrl: '',
     status: '',
   });
+
+  const history = useHistory();
 
   useEffect(() => {
     setUser({
@@ -78,6 +84,11 @@ const UserSettings = (): JSX.Element => {
       setImageFile(file[0]);
     }
   };
+
+  const backToProfile = () => {
+    history.push('/userprofile')
+
+  }
 
   return (
     <div className="container">
@@ -169,6 +180,11 @@ const UserSettings = (): JSX.Element => {
           </button>
 
         </form>
+
+        <button className="btn" onClick={backToProfile}>
+            Back to profile
+          </button>
+
       </div>
     </div>
 
