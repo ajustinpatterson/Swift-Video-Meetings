@@ -18,7 +18,12 @@ const Meeting = () => {
   const history = useHistory();
   const socket = useContext(SocketContext);
   const otherVideoRef = useRef(null);
-  const peer = new Peer();
+  let peer = new Peer(undefined, {
+    host: 'peerjs-server.herokuapp.com',
+    secure: true,
+    port: 443,
+  });
+  let users: string[] = [];
   const [hasOtherJoined, setHasOtherJoined] = useState<boolean>(false);
   const [streams, setStreams] = useState<MediaStream[]>([]);
   const [sharing, setSharing] = useState<boolean>(false);
@@ -28,11 +33,16 @@ const Meeting = () => {
 
   //****************** FUNCTIONALITY ************************/
 
-  peer.on('open', (id) => {
-    console.log('My peer id is: ', id);
+  socket.on('connect', () => {
+    console.log('socket id is ', socket.id);
   });
 
-  console.log('is peer id accessible this way?', peer.id);
+  peer.on('open', (id) => {
+    console.log('My peer id is: ', id);
+    users.push(id);
+    console.log('Users: ', users);
+    console.log('the peer object looks like: ', peer);
+  });
 
   //****************** RENDERING ************************/
 
@@ -49,7 +59,7 @@ const Meeting = () => {
           <WebcamComponent videoRef={stream} />
         ))}
       </div>
-      <div className="cntrlbar">
+      {/* <div className="cntrlbar">
         <button
           className={!sharing ? 'share-off' : 'share-on'}
           onClick={screenSharing}
@@ -107,7 +117,7 @@ const Meeting = () => {
         <button className="btn-off" onClick={handleProfile}>
           <i className="far fa-user set"></i>
         </button>
-      </div>
+      </div> */}
     </>
   );
 };
