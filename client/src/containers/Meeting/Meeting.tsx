@@ -26,6 +26,14 @@ const Meeting = () => {
   const [recording, setRecording] = useState<boolean>(false);
   const [mute, setMute] = useState<boolean>(false);
 
+  //****************** FUNCTIONALITY ************************/
+
+  peer.on('open', (id) => {
+    console.log('My peer id is: ', id);
+  });
+
+  console.log('is peer id accessible this way?', peer.id);
+
   //****************** RENDERING ************************/
 
   return (
