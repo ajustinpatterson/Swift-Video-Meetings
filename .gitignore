@@ -3,4 +3,4 @@
 .env
 .gitignore
 .prettierrc.js
-node_modules
+node_modules/
