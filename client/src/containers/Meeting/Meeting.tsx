@@ -18,6 +18,7 @@ const Meeting = () => {
   const history = useHistory();
   const socket = useContext(SocketContext);
   const otherVideoRef = useRef(null);
+  const peer = new Peer();
   const [hasOtherJoined, setHasOtherJoined] = useState<boolean>(false);
   const [streams, setStreams] = useState<MediaStream[]>([]);
   const [sharing, setSharing] = useState<boolean>(false);
