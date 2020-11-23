@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import {BrowserRouter} from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import Routes from '../../components/Routes/Routes';
 
 // import {uuid} from '../../uuid';
@@ -12,9 +11,9 @@ interface props {
 // // console.log('uuid: ', uuid);
 function App({ socket }: props) {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 export default App;
