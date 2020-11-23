@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "http://localhost:3000/static/css/main.ef14fd81.chunk.css",
+    "main.js": "http://localhost:3000/static/js/main.8b880651.chunk.js",
+    "main.js.map": "http://localhost:3000/static/js/main.8b880651.chunk.js.map",
+    "runtime-main.js": "http://localhost:3000/static/js/runtime-main.7ea6046d.js",
+    "runtime-main.js.map": "http://localhost:3000/static/js/runtime-main.7ea6046d.js.map",
+    "static/js/2.daf7dd23.chunk.js": "http://localhost:3000/static/js/2.daf7dd23.chunk.js",
+    "static/js/2.daf7dd23.chunk.js.map": "http://localhost:3000/static/js/2.daf7dd23.chunk.js.map",
+    "index.html": "http://localhost:3000/index.html",
+    "precache-manifest.5ee8e6207be9442c9f60cf33d0a2afb4.js": "http://localhost:3000/precache-manifest.5ee8e6207be9442c9f60cf33d0a2afb4.js",
+    "service-worker.js": "http://localhost:3000/service-worker.js",
+    "static/css/main.ef14fd81.chunk.css.map": "http://localhost:3000/static/css/main.ef14fd81.chunk.css.map",
+    "static/js/2.daf7dd23.chunk.js.LICENSE.txt": "http://localhost:3000/static/js/2.daf7dd23.chunk.js.LICENSE.txt",
+    "static/media/exit.svg": "http://localhost:3000/static/media/exit.df5f2549.svg",
+    "static/media/microphone-slash.svg": "http://localhost:3000/static/media/microphone-slash.b6eb2ae2.svg",
+    "static/media/microphone.svg": "http://localhost:3000/static/media/microphone.ca46940f.svg",
+    "static/media/play.svg": "http://localhost:3000/static/media/play.5ad41b24.svg",
+    "static/media/swift-logo-big.png": "http://localhost:3000/static/media/swift-logo-big.f3a9e075.png",
+    "static/media/swift-logo-middle.png": "http://localhost:3000/static/media/swift-logo-middle.b083729e.png",
+    "static/media/video-slash.svg": "http://localhost:3000/static/media/video-slash.877b2b1f.svg",
+    "static/media/video.svg": "http://localhost:3000/static/media/video.c93498a8.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7ea6046d.js",
+    "static/js/2.daf7dd23.chunk.js",
+    "static/css/main.ef14fd81.chunk.css",
+    "static/js/main.8b880651.chunk.js"
+  ]
+}
