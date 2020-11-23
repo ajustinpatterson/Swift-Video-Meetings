@@ -16,7 +16,6 @@ const Landing = (): JSX.Element => {
   const active = localStorage.getItem('loggedIn');
   const [roomId, setRoomId] = useState<string>('');
 
-
   const handleClick = () => {
     history.push('/powderroom');
   };
@@ -35,7 +34,7 @@ const Landing = (): JSX.Element => {
   const responseGoogle = async (response: any) => {
     try {
       console.log(response);
-      console.log(response.profileObj.email)
+      console.log(response.profileObj.email);
       if (response) {
         createUser({
           variables: {
@@ -46,14 +45,12 @@ const Landing = (): JSX.Element => {
               googleId: response.profileObj.googleId,
               imageUrl: response.profileObj.imageUrl,
               name: response.profileObj.name,
-            }
+            },
           },
         });
-
       }
-      
-      history.push('/meeting');
 
+      history.push('/meeting');
     } catch (err) {
       console.log(err);
     }
@@ -66,7 +63,7 @@ const Landing = (): JSX.Element => {
         <h1>Fast video meetings made simple.</h1>
         <p>Meet Swift. Fast calls. Simple.</p>
         <div className="spacer"></div>
-        {!active ? (
+        {/* {!active ? (
           <div className="btn-stack">
             <GoogleLogin
               clientId={apiId}
@@ -85,27 +82,26 @@ const Landing = (): JSX.Element => {
               cookiePolicy={'single_host_origin'}
             />
           </div>
-        ) : (
-          <div className="btn-stack">
-            <button className="button" onClick={handleClick}>
-              New
-            </button>
-            <form autoComplete="off" onSubmit={roomSubmit}>
-              <label>
-                <input
-                  type="text"
-                  value={roomId}
-                  onChange={handleChange}
-                  placeholder="Enter Room"
-                />
-              </label>
-            </form>
-          </div>
-        )}
+        ) : ( */}
+        <div className="btn-stack">
+          <button className="button" onClick={handleClick}>
+            New
+          </button>
+          <form autoComplete="off" onSubmit={roomSubmit}>
+            <label>
+              <input
+                type="text"
+                value={roomId}
+                onChange={handleChange}
+                placeholder="Enter Room"
+              />
+            </label>
+          </form>
+        </div>
+        {/* )} */}
       </div>
     </div>
   );
 };
 
 export default Landing;
-
