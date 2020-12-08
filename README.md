@@ -8,6 +8,10 @@ Meet Swift. Fast video meetings made simple.
 
 Swift is a minimal, cross-platform web application for fast and simple video conferencing.
 
+<p align="center">
+  <img src="./client/src/assets/swiftdemo.gif" />
+</p>
+
 ## Getting started
 
 1. Clone this repo
